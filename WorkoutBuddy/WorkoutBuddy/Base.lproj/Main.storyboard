@@ -15,7 +15,15 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M9V-4c-2f0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
@@ -48,11 +56,11 @@
             </objects>
             <point key="canvasLocation" x="-709" y="1154"/>
         </scene>
-        <!--Item-->
+        <!--Routines-->
         <scene sceneID="0v3-fd-22J">
             <objects>
                 <navigationController id="Azj-H7-D2T" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="9Pa-0I-U8J"/>
+                    <tabBarItem key="tabBarItem" title="Routines" image="list.bullet" catalog="system" id="9Pa-0I-U8J"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q1w-Kg-1yL">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -65,11 +73,11 @@
             </objects>
             <point key="canvasLocation" x="-709" y="448"/>
         </scene>
-        <!--Item-->
+        <!--History-->
         <scene sceneID="1mm-i0-jyS">
             <objects>
                 <navigationController id="grN-wr-LvR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="zaV-Ih-H9R"/>
+                    <tabBarItem key="tabBarItem" title="History" image="person" catalog="system" id="zaV-Ih-H9R"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jT4-Zu-M9U">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -82,11 +90,11 @@
             </objects>
             <point key="canvasLocation" x="941" y="448"/>
         </scene>
-        <!--Item-->
+        <!--Workout-->
         <scene sceneID="mC0-Za-Tpw">
             <objects>
                 <navigationController id="ip4-p3-laV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="AJD-L3-G77"/>
+                    <tabBarItem key="tabBarItem" title="Workout" image="plus" catalog="system" id="AJD-L3-G77"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rwS-8A-pNU">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -99,10 +107,10 @@
             </objects>
             <point key="canvasLocation" x="127" y="448"/>
         </scene>
-        <!--View Controller-->
+        <!--Workout-->
         <scene sceneID="HzH-nI-unH">
             <objects>
-                <viewController id="ekg-sp-Fwd" sceneMemberID="viewController">
+                <viewController id="ekg-sp-Fwd" customClass="WorkoutViewController" customModule="WorkoutBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="izL-Ae-GHT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,21 +118,49 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hyX-UF-JuK">
                                 <rect key="frame" x="0.0" y="316" width="393" height="485"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-tg-NGv">
-                                <rect key="frame" x="341" y="271" width="52" height="46"/>
+                                <rect key="frame" x="341" y="270" width="52" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="+"/>
+                                <buttonConfiguration key="configuration" style="plain" title="+">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="kOG-5i-ygx" kind="presentation" id="r45-gY-yL2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00 : 00 : 00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzB-2r-kKM">
+                                <rect key="frame" x="15" y="113" width="363" height="77.666666666666686"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="65"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68z-q5-7rP">
+                                <rect key="frame" x="156" y="198" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Start"/>
+                                <connections>
+                                    <action selector="startTapped:" destination="ekg-sp-Fwd" eventType="touchUpInside" id="ay6-dz-n4z"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eD2-Nq-wbu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NzB-2r-kKM" firstAttribute="top" secondItem="eD2-Nq-wbu" secondAttribute="top" constant="10" id="9OP-3i-gxU"/>
+                            <constraint firstItem="NzB-2r-kKM" firstAttribute="leading" secondItem="eD2-Nq-wbu" secondAttribute="leading" constant="15" id="Lz7-zc-Bad"/>
+                            <constraint firstItem="eD2-Nq-wbu" firstAttribute="trailing" secondItem="NzB-2r-kKM" secondAttribute="trailing" constant="15" id="pnB-Sz-LfC"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2Wt-pq-Qku"/>
+                    <navigationItem key="navigationItem" title="Workout" id="2Wt-pq-Qku"/>
+                    <connections>
+                        <outlet property="startButton" destination="68z-q5-7rP" id="H33-bg-0gU"/>
+                        <outlet property="timerLabel" destination="NzB-2r-kKM" id="AgE-y6-Cay"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ahm-7z-F5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,23 +171,9 @@
             <objects>
                 <viewController id="WPc-J5-usL" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2XW-KI-t51">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzP-Iu-PhE">
-                                <rect key="frame" x="167" y="72" width="58" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acc-uq-5Jq">
-                                <rect key="frame" x="167" y="136" width="58" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPl-fp-hsd">
                                 <rect key="frame" x="190" y="199" width="13" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -197,19 +219,44 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acc-uq-5Jq">
+                                <rect key="frame" x="167" y="119" width="58" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iO6-PO-Kk6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="nNv-Gd-X6a">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="b5s-lN-MSs">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="7EE-bq-DPC">
+                                <rect key="frame" x="16" y="11" width="87" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Close"/>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="YFA-6b-q3X">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="d3b-OI-9eJ">
+                                <rect key="frame" x="290" y="11" width="87" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DAw-jv-7MV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125.95419847328243" y="1880.2816901408451"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="1880.2816901408451"/>
         </scene>
         <!--Section 3-->
         <scene sceneID="CVX-F2-Kag">
             <objects>
-                <viewController id="h94-ST-Cfq" sceneMemberID="viewController">
+                <viewController id="h94-ST-Cfq" customClass="HistoryViewController" customModule="WorkoutBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GRb-uC-ky8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,13 +269,37 @@
             </objects>
             <point key="canvasLocation" x="940" y="1154"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GJq-qQ-N8W">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kOG-5i-ygx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GuX-XV-z21">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WPc-J5-usL" kind="relationship" relationship="rootViewController" id="8AX-M1-NBH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mV5-yR-ugE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="125.95419847328243" y="1880.2816901408451"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
