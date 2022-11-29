@@ -88,13 +88,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		702BDCAC293690B500643ADA /* controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = controllers;
-			sourceTree = "<group>";
-		};
 		702BDCAD293690F900643ADA /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +134,6 @@
 				70B8EDA4293672E400C57A76 /* HistoryViewController.swift */,
 				702BDCA62936888A00643ADA /* AddExerciseViewController.swift */,
 				C981F0C02932A72D0046B17E /* ViewController.swift */,
-				702BDCAC293690B500643ADA /* controllers */,
 				702BDCAE2936910F00643ADA /* models */,
 				702BDCAD293690F900643ADA /* views */,
 				C981F0BC2932A72D0046B17E /* AppDelegate.swift */,

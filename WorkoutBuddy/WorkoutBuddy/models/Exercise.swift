@@ -9,7 +9,7 @@ import Foundation
 
 struct Exercise{
     var key: String?
-    var type: String?
+    var type: String? 
     var name: String?
     var sets: Int?
     var reps: Int?
