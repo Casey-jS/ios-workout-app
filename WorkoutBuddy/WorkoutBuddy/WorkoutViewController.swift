@@ -7,10 +7,11 @@
 
 import UIKit
 
-class WorkoutViewController: UIViewController {
+class WorkoutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var running = false
     var timer: Timer = Timer()
