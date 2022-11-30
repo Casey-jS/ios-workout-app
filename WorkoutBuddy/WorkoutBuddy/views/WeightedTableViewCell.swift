@@ -36,7 +36,9 @@ class WeightedTableViewCell: UITableViewCell {
     
     @IBAction func subtractSet(_ sender: Any) {
         var temp: Int = Int(setsLabel.text!)!
-        temp -= 1
+        if(temp > 0){
+            temp -= 1
+        }
         setsLabel.text = String(temp)
     }
 }
