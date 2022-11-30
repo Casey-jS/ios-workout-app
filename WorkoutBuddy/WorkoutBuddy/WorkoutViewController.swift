@@ -38,6 +38,9 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         
         timerLabel.layer.cornerRadius = 15
         timerLabel.layer.masksToBounds = true
+        
+        tableView.layer.cornerRadius = 5
+        tableView.layer.masksToBounds = true
     }
     
     
@@ -95,15 +98,59 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             return 0
         }
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+        -> UITableViewCell
+    {
         
-        if let exercise = self.exercises?[indexPath.row] {
-            cell.textLabel?.text = exercise.name
+        
+        // Returns weighted cell view
+        if(exercises![indexPath.row].type == "Weighted"){
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "weightedCell", for:
+                indexPath) as! WeightedTableViewCell
+            if let exercise = self.exercises?[indexPath.row] {
+                cell.titleLabel.text = exercise.name
+                cell.setsLabel.text = String(exercise.sets!)
+                cell.repsLabel.text = "Reps: \(String(exercise.reps!))"
+                cell.weightLabel.text = "Weight: \(String(exercise.weight!))"
+            }
+            return cell
+        // Returns non weighted cell view
+        }else if(exercises![indexPath.row].type == "non-Weighted"){
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "nonWeightedCell", for: indexPath) as! NonWeightedTableViewCell
+            if let exercise = self.exercises?[indexPath.row] {
+                cell.titleLabel.text = exercise.name
+                cell.setsLabel.text = String(exercise.sets!)
+                cell.repsLabel.text = "Reps: \(String(exercise.reps!))"
+                
+            }
+            return cell
+        // Returns cardio cell view
+        }else{
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "cardioCell", for: indexPath) as! CardioTableViewCell
+            if let exercise = self.exercises?[indexPath.row] {
+                cell.titleLabel.text = exercise.name
+                cell.timeLabel.text = exercise.time
+            }
+            return cell
         }
-        return cell
     }
     
-    
+    // MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if(exercises![indexPath.row].type == "Cardio"){
+            return 100.0
+        }
+        return 125.0
+    }
+        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            guard let exercise = self.exercises?[indexPath.row] else {
+                return
+            }
+            print("Selected\(String(describing: exercise.name))")
+        }
     
 }
+    
+
