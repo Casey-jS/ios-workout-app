@@ -62,6 +62,13 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 // TODO: Save workout
                 
+                
+                self.exercises = []
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
             }))
             self.present(alert, animated: true, completion: nil)
         }
@@ -141,7 +148,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         if(exercises![indexPath.row].type == "Cardio"){
             return 100.0
         }
-        return 125.0
+        return 130.0
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
