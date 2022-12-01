@@ -8,7 +8,7 @@
 import Foundation
 
 struct Exercise{
-    var key: String?
+    var key: Int?
     var type: String? 
     var name: String?
     var sets: Int?
@@ -17,7 +17,7 @@ struct Exercise{
     var weight: Int?
     
     // General initializer
-    init(key: String?, type: String?, name: String?, sets: Int?, reps: Int?, time: String?, weight: Int?){
+    init(key: Int?, type: String?, name: String?, sets: Int?, reps: Int?, time: String?, weight: Int?){
         self.key = key
         self.type = type
         self.name = name
@@ -27,16 +27,19 @@ struct Exercise{
         self.weight = weight
     }
     // Initalizer for weighted exercises
-    init(key: String?, type: String?, name: String?, sets: Int?, reps: Int?, weight: Int?){
+    init(key: Int?, type: String?, name: String?, sets: Int?, reps: Int?, weight: Int?){
         self.init(key: key, type: type, name: name, sets: sets, reps: reps, time: nil, weight: weight)
     }
     // Initializer for non-weighted exercises
-    init(key: String?, type: String?, name: String?, sets: Int?, reps: Int?){
+    init(key: Int?, type: String?, name: String?, sets: Int?, reps: Int?){
         self.init(key: key, type: type, name: name, sets: sets, reps: reps, time: nil, weight: nil)
     }
     // Initializer for cardio exercises
-    init(key: String?, type: String?, name: String?, time: String?){
+    init(key: Int?, type: String?, name: String?, time: String?){
         self.init(key: key, type: type, name: name, sets: nil, reps: nil, time: time, weight: nil)
+    }
+    init(key: Int?, type: String?){
+        self.init(key: key, type: type, name: nil, sets: nil, reps: nil, time: nil, weight: nil)
     }
     // Empty initializer
     init(){

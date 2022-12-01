@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class WorkoutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var startButton: UIButton!
@@ -43,6 +44,10 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.layer.masksToBounds = true
     }
     
+    
+    @IBAction func addTapped(_ sender: Any) {
+        
+    }
     
     // Starts a workout when start button is tapped
     @IBAction func startTapped(_ sender: Any) {
@@ -158,6 +163,26 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             print("Selected\(String(describing: exercise.name))")
         }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addExerciseSegue" {
+            if let dest = segue.destination.children[0] as? AddExerciseViewController {
+                let newExercise = Exercise(key: (self.exercises!.count + 1), type: "Weighted")
+                dest.newExercise = newExercise
+                dest.delegate = self
+            }
+        }
+    }
+    
 }
     
+
+extension WorkoutViewController : AddExerciseViewControllerDelegate {
+    func newExercise(exercise: Exercise){
+        // Inserts new exercise into exercises list
+        self.exercises?.insert(exercise, at: 0)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
 
