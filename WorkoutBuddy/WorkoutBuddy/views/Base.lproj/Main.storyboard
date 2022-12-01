@@ -321,7 +321,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="kOG-5i-ygx" kind="presentation" modalPresentationStyle="automatic" id="r45-gY-yL2"/>
+                                    <segue destination="kOG-5i-ygx" kind="presentation" identifier="addWorkoutSegue" modalPresentationStyle="automatic" id="r45-gY-yL2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -408,26 +408,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="nNv-Gd-X6a">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="b5s-lN-MSs">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="7EE-bq-DPC">
-                                <rect key="frame" x="16" y="10.666666666666664" width="87" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="zzr-59-oxP">
                             <connections>
-                                <action selector="cancelTapped:" destination="WPc-J5-usL" id="LZt-rn-w5A"/>
+                                <action selector="cancelTapped:" destination="WPc-J5-usL" id="N43-KU-tQZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="YFA-6b-q3X">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="d3b-OI-9eJ">
-                                <rect key="frame" x="290" y="11" width="87" height="34.333333333333336"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Wvr-At-Jfq">
                             <connections>
-                                <action selector="addTapped:" destination="WPc-J5-usL" id="mxb-CK-XUx"/>
+                                <action selector="addTapped:" destination="WPc-J5-usL" id="buq-CK-Olq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
