@@ -133,6 +133,14 @@ extension AddExerciseViewController : UIPickerViewDelegate, UIPickerViewDataSour
         if(self.pickerData[row] == "non-Weighted"){
             self.weightLabel.isHidden = true
             self.weightInput.isHidden = true
+            
+            self.setsLabel.isHidden = false
+            self.setsTitleLabel.isHidden = false
+            self.plusButton.isHidden = false
+            self.minusButton.isHidden = false
+            
+            self.repsInput.isHidden = false
+            self.repsLabel.isHidden = false
         }else if(self.pickerData[row] == "Cardio"){
             self.weightLabel.isHidden = true
             self.weightInput.isHidden = true
