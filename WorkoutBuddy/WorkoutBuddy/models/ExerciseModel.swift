@@ -21,6 +21,6 @@ class ExerciseModel {
         items.append(Exercise(key: 6, type: "non-Weighted", name: "Pull-ups", sets: 4, reps: 10))
         items.append(Exercise(key: 3, type: "Weighted", name: "Deadlift", sets: 2, reps: 20, weight: 225))
         items.append(Exercise(key: 4, type: "Weighted", name: "Incline dumbell benchpress", sets: 4, reps: 10, weight: 45))
-        items.append(Exercise(key: 5, type: "Cardio", name: "Treadmill", time: "15:00"))
+        items.append(Exercise(key: 5, type: "Cardio", name: "Treadmill", time: "0:00:00"))
     }
 }

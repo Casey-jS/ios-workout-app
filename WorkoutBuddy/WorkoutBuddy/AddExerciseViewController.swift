@@ -16,8 +16,17 @@ class AddExerciseViewController: UIViewController {
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var picker: UIPickerView!
+    
+    @IBOutlet weak var repsLabel: UILabel!
     @IBOutlet weak var repsInput: UITextField!
+    
+    @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var weightInput: UITextField!
+    
+    
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var setsTitleLabel: UILabel!
     @IBOutlet weak var setsLabel: UILabel!
     
     var pickerData: [String] = [String]()
@@ -95,7 +104,7 @@ class AddExerciseViewController: UIViewController {
             newExercise?.reps = Int(repsInput.text!)
             newExercise?.sets = Int(setsLabel.text!)
         }else{
-            newExercise?.time = "1:15"
+            newExercise?.time = "0:00:00"
         }
         
         if let del = self.delegate {
@@ -121,5 +130,31 @@ extension AddExerciseViewController : UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.newExercise?.type = self.pickerData[row]
         self.typeLabel.text = self.pickerData[row]
+        if(self.pickerData[row] == "non-Weighted"){
+            self.weightLabel.isHidden = true
+            self.weightInput.isHidden = true
+        }else if(self.pickerData[row] == "Cardio"){
+            self.weightLabel.isHidden = true
+            self.weightInput.isHidden = true
+            
+            self.setsLabel.isHidden = true
+            self.setsTitleLabel.isHidden = true
+            self.plusButton.isHidden = true
+            self.minusButton.isHidden = true
+            
+            self.repsInput.isHidden = true
+            self.repsLabel.isHidden = true
+        }else{
+            self.weightLabel.isHidden = false
+            self.weightInput.isHidden = false
+            
+            self.setsLabel.isHidden = false
+            self.setsTitleLabel.isHidden = false
+            self.plusButton.isHidden = false
+            self.minusButton.isHidden = false
+            
+            self.repsInput.isHidden = false
+            self.repsLabel.isHidden = false
+        }
     }
 }
