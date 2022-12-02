@@ -97,13 +97,36 @@ class AddExerciseViewController: UIViewController {
         newExercise?.name = nameLabel.text
         
         if(newExercise?.type == "Weighted"){
-            newExercise?.weight = Int(weightInput.text!)
-            newExercise?.reps = Int(repsInput.text!)
+            
+            // If no weight input is given, make 0
+            var weightStr = weightInput.text
+            if (weightInput.text?.isEmpty == true){
+                weightStr = "0"
+            }
+            newExercise?.weight = Int(weightStr!)
+            
+            // if no reps input is given, make 0
+            var repsStr = repsInput.text
+            if (repsInput.text?.isEmpty == true){
+                repsStr = "0"
+            }
+            newExercise?.reps = Int(repsStr!)
+            
+            // 0 is default for sets
             newExercise?.sets = Int(setsLabel.text!)
+            
         }else if(newExercise?.type == "non-Weighted"){
-            newExercise?.reps = Int(repsInput.text!)
+            // if no reps input is given, make 0
+            var repsStr = repsInput.text
+            if (repsInput.text?.isEmpty == true){
+                repsStr = "0"
+            }
+            newExercise?.reps = Int(repsStr!)
+            
+            // 0 is default for sets
             newExercise?.sets = Int(setsLabel.text!)
         }else{
+            // Sets time to 0
             newExercise?.time = "0:00:00"
         }
         
