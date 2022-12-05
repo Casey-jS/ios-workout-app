@@ -16,6 +16,20 @@ public struct Exercise{
     var time: String?
     var weight: Int?
     
+    let persistentContainer: NSPersistentContainer = {
+        // creates the NSPersistentContainer object
+        // must be given the name of the Core Data model file “Exercise”
+        let container = NSPersistentContainer(name: "ExerciseEntity")
+
+        // load the saved database if it exists, creates it if it does not, and returns an error under failure conditions
+        container.loadPersistentStores { (description, error) in
+            if let error = error {
+                print("Error setting up Core Data (\(error)).")
+            }
+        }
+        return container
+    }()
+    
     // General initializer
     init(key: Int?, type: String?, name: String?, sets: Int?, reps: Int?, time: String?, weight: Int?){
         self.key = key
