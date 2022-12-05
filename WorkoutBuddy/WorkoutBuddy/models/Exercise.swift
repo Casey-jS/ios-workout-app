@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Exercise{
+public struct Exercise{
     var key: Int?
     var type: String? 
     var name: String?

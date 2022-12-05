@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 class WorkoutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -45,6 +46,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
+    
     @IBAction func addTapped(_ sender: Any) {
         
     }
@@ -64,10 +66,6 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.timerLabel.text = self.makeTimeString(hours: 0, minutes: 0, seconds: 0)
                 self.startButton.setTitle("Start", for: .normal)
                 self.running = false
-                
-                // TODO: Save workout
-                
-                
                 self.exercises = []
                 
                 DispatchQueue.main.async {
