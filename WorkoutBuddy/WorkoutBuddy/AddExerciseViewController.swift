@@ -110,7 +110,7 @@ class AddExerciseViewController: UIViewController {
             // 0 is default for sets
             newExercise?.sets = Int(setsLabel.text!)
             
-        }else if(newExercise?.type == "non-Weighted"){
+        }else if(newExercise?.type == "Non-Weighted"){
             // if no reps input is given, make 0
             var repsStr = repsInput.text
             if (repsInput.text?.isEmpty == true){
@@ -148,7 +148,7 @@ extension AddExerciseViewController : UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.newExercise?.type = self.pickerData[row]
         self.typeLabel.text = self.pickerData[row]
-        if(self.pickerData[row] == "non-Weighted"){
+        if(self.pickerData[row] == "Non-Weighted"){
             self.weightLabel.isHidden = true
             self.weightInput.isHidden = true
             

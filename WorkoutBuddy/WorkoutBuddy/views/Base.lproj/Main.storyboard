@@ -12,10 +12,11 @@
         <scene sceneID="hk9-Sx-uKa">
             <objects>
                 <tabBarController id="Fd1-lp-rXb" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M9V-4c-2f0">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="M9V-4c-2f0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemBlueColor"/>
+                        <color key="barTintColor" systemColor="systemBlueColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,22 +41,6 @@
             </objects>
             <point key="canvasLocation" x="98" y="-373"/>
         </scene>
-        <!--Section 1-->
-        <scene sceneID="yJ0-Jo-t6Q">
-            <objects>
-                <viewController id="SlC-Y7-ddE" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UBR-yQ-sR0">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="4wj-2a-jQe"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Section 1" id="AdU-Wj-ava"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pag-QX-8er" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-709" y="1154"/>
-        </scene>
         <!--Routines-->
         <scene sceneID="0v3-fd-22J">
             <objects>
@@ -66,7 +51,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="SlC-Y7-ddE" kind="relationship" relationship="rootViewController" id="FNZ-uP-Lqk"/>
+                        <segue destination="XPk-Qx-Ysy" kind="relationship" relationship="rootViewController" id="mOg-Qg-oj3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qt0-R4-Qks" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -107,12 +92,41 @@
             </objects>
             <point key="canvasLocation" x="127" y="448"/>
         </scene>
+        <!--Routines-->
+        <scene sceneID="lbP-BP-F5I">
+            <objects>
+                <tableViewController id="XPk-Qx-Ysy" customClass="RoutinesTableViewController" customModule="WorkoutBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="0dJ-e7-N0i">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jtt-YA-Aih">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jtt-YA-Aih" id="azg-0s-tc4">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XPk-Qx-Ysy" id="xzS-RZ-9Os"/>
+                            <outlet property="delegate" destination="XPk-Qx-Ysy" id="JVi-Fa-o7f"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Routines" id="Mdb-Mc-fSV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L4T-ya-HTf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-709" y="1154"/>
+        </scene>
         <!--Workout-->
         <scene sceneID="HzH-nI-unH">
             <objects>
                 <viewController id="ekg-sp-Fwd" customClass="WorkoutViewController" customModule="WorkoutBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="izL-Ae-GHT">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hyX-UF-JuK">
@@ -478,7 +492,7 @@
             <objects>
                 <viewController id="h94-ST-Cfq" customClass="HistoryViewController" customModule="WorkoutBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GRb-uC-ky8">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="86x-8F-wwe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

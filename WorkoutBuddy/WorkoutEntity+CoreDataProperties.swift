@@ -18,7 +18,7 @@ extension WorkoutEntity {
 
     @NSManaged public var date: Date?
     @NSManaged public var time: Float
-    @NSManaged public var exercises: 
+    @NSManaged public var exercises: [String]
 
 }
 

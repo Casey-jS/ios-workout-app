@@ -97,6 +97,13 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         return timeString
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            exercises?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
     // MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -125,7 +132,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             return cell
         // Returns non weighted cell view
-        }else if(exercises![indexPath.row].type == "non-Weighted"){
+        }else if(exercises![indexPath.row].type == "Non-Weighted"){
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "nonWeightedCell", for: indexPath) as! NonWeightedTableViewCell
             if let exercise = self.exercises?[indexPath.row] {
                 cell.titleLabel.text = exercise.name

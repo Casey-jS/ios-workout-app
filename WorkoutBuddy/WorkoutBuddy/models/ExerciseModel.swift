@@ -18,7 +18,7 @@ class ExerciseModel {
     fileprivate func createExercises(){
         items.append(Exercise(key: 1, type: "Weighted", name: "Benchpress", sets: 4, reps: 10, weight: 145))
         items.append(Exercise(key: 2, type: "Weighted", name: "Squat", sets: 4, reps: 12, weight: 225))
-        items.append(Exercise(key: 6, type: "non-Weighted", name: "Pull-ups", sets: 4, reps: 10))
+        items.append(Exercise(key: 6, type: "Non-Weighted", name: "Pull-ups", sets: 4, reps: 10))
         items.append(Exercise(key: 3, type: "Weighted", name: "Deadlift", sets: 2, reps: 20, weight: 225))
         items.append(Exercise(key: 4, type: "Weighted", name: "Incline dumbell benchpress", sets: 4, reps: 10, weight: 45))
         items.append(Exercise(key: 5, type: "Cardio", name: "Treadmill", time: "0:00:00"))

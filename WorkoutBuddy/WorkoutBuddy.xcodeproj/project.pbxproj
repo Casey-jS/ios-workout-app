@@ -27,6 +27,7 @@
 		C981F0F5293DB8900046B17E /* WorkoutEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F3293DB8900046B17E /* WorkoutEntity+CoreDataProperties.swift */; };
 		C981F0F8293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F6293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift */; };
 		C981F0F9293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F7293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift */; };
+		F802D841293E7E3C00D2CD15 /* RoutinesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D840293E7E3C00D2CD15 /* RoutinesTableViewController.swift */; };
 		F807B04E2936EEB70020AE82 /* WeightedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807B04D2936EEB70020AE82 /* WeightedTableViewCell.swift */; };
 		F807B0502936FD370020AE82 /* NonWeightedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807B04F2936FD370020AE82 /* NonWeightedTableViewCell.swift */; };
 		F807B0522936FD4A0020AE82 /* CardioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807B0512936FD4A0020AE82 /* CardioTableViewCell.swift */; };
@@ -74,6 +75,7 @@
 		C981F0F3293DB8900046B17E /* WorkoutEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C981F0F6293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C981F0F7293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F802D840293E7E3C00D2CD15 /* RoutinesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesTableViewController.swift; sourceTree = "<group>"; };
 		F807B04D2936EEB70020AE82 /* WeightedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightedTableViewCell.swift; sourceTree = "<group>"; };
 		F807B04F2936FD370020AE82 /* NonWeightedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonWeightedTableViewCell.swift; sourceTree = "<group>"; };
 		F807B0512936FD4A0020AE82 /* CardioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioTableViewCell.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		C981F0BB2932A72D0046B17E /* WorkoutBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				F802D840293E7E3C00D2CD15 /* RoutinesTableViewController.swift */,
 				70B8EDA22936727F00C57A76 /* WorkoutViewController.swift */,
 				70B8EDA4293672E400C57A76 /* HistoryViewController.swift */,
 				702BDCA62936888A00643ADA /* AddExerciseViewController.swift */,
@@ -320,6 +323,7 @@
 				F807B0502936FD370020AE82 /* NonWeightedTableViewCell.swift in Sources */,
 				702BDCA929368ABD00643ADA /* Exercise.swift in Sources */,
 				70F951C42938F54C00B9EBC2 /* Workout.swift in Sources */,
+				F802D841293E7E3C00D2CD15 /* RoutinesTableViewController.swift in Sources */,
 				C981F0C12932A72D0046B17E /* ViewController.swift in Sources */,
 				70B8EDA32936727F00C57A76 /* WorkoutViewController.swift in Sources */,
 				F807B04E2936EEB70020AE82 /* WeightedTableViewCell.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct Workout {
     var date: Date?
