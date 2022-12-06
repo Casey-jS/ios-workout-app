@@ -105,11 +105,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="routineCell" textLabel="k3f-et-3GS" detailTextLabel="3JC-xF-hC9" rowHeight="90" style="IBUITableViewCellStyleSubtitle" id="ZXD-Ee-fKZ" customClass="RoutineTableViewCell" customModule="WorkoutBuddy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="routineCell" textLabel="k3f-et-3GS" detailTextLabel="3JC-xF-hC9" rowHeight="90" style="IBUITableViewCellStyleSubtitle" id="ZXD-Ee-fKZ" customClass="RoutineTableViewCell" customModule="WorkoutBuddy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="361" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZXD-Ee-fKZ" id="pA9-hY-opW">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="330.66666666666669" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k3f-et-3GS">
@@ -704,7 +704,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="O3K-Cx-pQc"/>
-        <segue reference="r45-gY-yL2"/>
+        <segue reference="KD5-gT-hJW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock" catalog="system" width="128" height="123"/>
