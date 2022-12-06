@@ -13,8 +13,11 @@ protocol AddRoutineViewControllerDelegate {
 
 class AddRoutineViewController: UIViewController {
 
-    var routine: Routine?
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var nameInput: UITextField!
     
+    var routine: Routine?
+    var editMode: Bool
     var delegate: AddRoutineViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -29,6 +32,7 @@ class AddRoutineViewController: UIViewController {
     }
     
     @IBAction func saveTapped(_ sender: Any) {
+        routine?.name = nameInput.text
         if let del = self.delegate {
             del.addRoutine(routine: routine!)
         }

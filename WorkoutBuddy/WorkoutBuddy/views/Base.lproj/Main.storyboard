@@ -596,6 +596,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameInput" destination="Vbl-Ka-Imf" id="Nka-eu-qAi"/>
+                        <outlet property="titleLabel" destination="Ic9-hR-1SG" id="FV7-7n-Xmg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXR-S8-7kT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
