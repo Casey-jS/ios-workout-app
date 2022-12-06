@@ -13,6 +13,7 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var tableView: UITableView!
     
     var routines: [Routine]?
+    var editRoutine: Routine?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,18 +81,26 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let routine = self.routines?[indexPath.row] else {
-//            return
-//        }
-        performSegue(withIdentifier: "addRoutineSegue", sender: nil) 
+        guard let routine = self.routines?[indexPath.row] else {
+            return
+        }
+        editRoutine = routine
+        performSegue(withIdentifier: "editRoutineSegue", sender: nil)
         }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addRoutineSegue" {
             if let dest = segue.destination.children[0] as? AddRoutineViewController {
-                let routine = Routine(name: "", date: Date(), exercises: [])
+                let routine = Routine(key: self.routines!.count + 1, name: "", date: Date(), exercises: [])
                 dest.routine = routine
                 dest.editMode = false
+                dest.delegate = self
+            }
+        }
+        if segue.identifier == "editRoutineSegue" {
+            if let dest = segue.destination.children[0] as? AddRoutineViewController {
+                dest.routine = editRoutine
+                dest.editMode = true
                 dest.delegate = self
             }
         }
@@ -101,6 +110,14 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
 extension RoutinesViewController: AddRoutineViewControllerDelegate {
     func addRoutine(routine: Routine){
         // Inserts new exercise into exercises list
+        self.routines?.insert(routine, at: 0)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    func replaceRoutine(routine: Routine){
+        // Inserts new exercise into exercises list
+        self.routines?.removeAll(where: { $0.key == routine.key })
         self.routines?.insert(routine, at: 0)
         DispatchQueue.main.async {
             self.tableView.reloadData()

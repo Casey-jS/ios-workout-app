@@ -169,7 +169,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addExerciseSegue" {
+        if segue.identifier == "addWorkoutExerciseSegue" {
             if let dest = segue.destination.children[0] as? AddExerciseViewController {
                 let newExercise = Exercise(key: (self.exercises!.count + 1), type: "Weighted")
                 dest.newExercise = newExercise

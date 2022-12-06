@@ -21,7 +21,7 @@ class RoutineModel {
         return self.items
     }
     fileprivate func createRoutines(){
-        items.append(Routine(name: "Monday", date: Date(), exercises: exercises))
+        items.append(Routine(key: 1, name: "Monday", date: Date(), exercises: exercises))
     }
 }
 
