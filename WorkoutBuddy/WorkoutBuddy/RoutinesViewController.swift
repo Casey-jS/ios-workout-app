@@ -63,11 +63,11 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         -> UITableViewCell
     {
 
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "routineCell", for: indexPath) as! RoutineTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "routineCell", for: indexPath)
         
         if let routine = self.routines?[indexPath.row]{
-            cell.nameLabel.text = routine.name
-            cell.dateLabel.text = routine.date?.formatted()
+            cell.textLabel?.text = routine.name
+            cell.detailTextLabel?.text = routine.date?.formatted()
         }
             
         return cell

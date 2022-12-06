@@ -28,7 +28,6 @@
 		C981F0F8293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F6293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift */; };
 		C981F0F9293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F7293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift */; };
 		F802D843293E913300D2CD15 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D842293E913300D2CD15 /* RoutinesViewController.swift */; };
-		F802D845293E927D00D2CD15 /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D844293E927D00D2CD15 /* RoutineTableViewCell.swift */; };
 		F802D849293E95C200D2CD15 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D848293E95C200D2CD15 /* Routine.swift */; };
 		F802D84B293E962E00D2CD15 /* RoutineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D84A293E962D00D2CD15 /* RoutineModel.swift */; };
 		F802D84D293EB83300D2CD15 /* AddRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D84C293EB83300D2CD15 /* AddRoutineViewController.swift */; };
@@ -80,7 +79,6 @@
 		C981F0F6293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C981F0F7293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F802D842293E913300D2CD15 /* RoutinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
-		F802D844293E927D00D2CD15 /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
 		F802D848293E95C200D2CD15 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		F802D84A293E962D00D2CD15 /* RoutineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel.swift; sourceTree = "<group>"; };
 		F802D84C293EB83300D2CD15 /* AddRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				F807B04D2936EEB70020AE82 /* WeightedTableViewCell.swift */,
 				F807B04F2936FD370020AE82 /* NonWeightedTableViewCell.swift */,
 				F807B0512936FD4A0020AE82 /* CardioTableViewCell.swift */,
-				F802D844293E927D00D2CD15 /* RoutineTableViewCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -336,7 +333,6 @@
 				702BDCA929368ABD00643ADA /* Exercise.swift in Sources */,
 				70F951C42938F54C00B9EBC2 /* Workout.swift in Sources */,
 				C981F0C12932A72D0046B17E /* ViewController.swift in Sources */,
-				F802D845293E927D00D2CD15 /* RoutineTableViewCell.swift in Sources */,
 				70B8EDA32936727F00C57A76 /* WorkoutViewController.swift in Sources */,
 				F802D84D293EB83300D2CD15 /* AddRoutineViewController.swift in Sources */,
 				F807B04E2936EEB70020AE82 /* WeightedTableViewCell.swift in Sources */,

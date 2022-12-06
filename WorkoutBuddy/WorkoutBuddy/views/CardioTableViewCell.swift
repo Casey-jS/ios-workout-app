@@ -19,7 +19,7 @@ class CardioTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Sets a monospaced font so timer doesn't shake
-        timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 22, weight: UIFont.Weight.regular)
+        timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 12, weight: UIFont.Weight.regular)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

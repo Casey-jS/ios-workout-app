@@ -156,9 +156,9 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         if(exercises![indexPath.row].type == "Cardio"){
-            return 100.0
+            return 80.0
         }
-        return 130.0
+        return 100.0
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
