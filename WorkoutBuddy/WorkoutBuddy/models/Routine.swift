@@ -1,16 +1,16 @@
 //
-//  Workout.swift
+//  Routine.swift
 //  WorkoutBuddy
 //
-//  Created by Lucas D. Johnson on 12/1/22.
+//  Created by Lucas Johnson on 12/5/22.
 //
 
 import Foundation
 import CoreData
 
-struct Workout {
+struct Routine {
+    var name: String?
     var date: Date?
-    var time: TimeInterval?
     var exercises: [Exercise]?
     
     
@@ -28,9 +28,9 @@ struct Workout {
 //        return container
 //    }()
     
-    init(date: Date? = nil, time: TimeInterval? = nil, exercises: [Exercise]? = nil) {
+    init(name: String? = nil, date: Date? = nil, exercises: [Exercise]? = nil) {
+        self.name = name
         self.date = date
-        self.time = time
         self.exercises = exercises
     }
 }
