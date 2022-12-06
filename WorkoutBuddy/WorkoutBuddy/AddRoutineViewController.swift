@@ -82,7 +82,7 @@ class AddRoutineViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell
     {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for:
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "RoutineExerciseCell", for:
             indexPath)
         if let exercise = self.routine?.exercises?[indexPath.row] {
             if(exercise.type == "Weighted"){

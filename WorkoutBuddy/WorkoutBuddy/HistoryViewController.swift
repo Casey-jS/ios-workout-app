@@ -8,11 +8,15 @@
 import UIKit
 
 class HistoryViewController: UIViewController {
+    
+    @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.layer.cornerRadius = 5
+        tableView.layer.masksToBounds = true
     }
     
 
