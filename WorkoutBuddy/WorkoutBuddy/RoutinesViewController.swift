@@ -80,10 +80,10 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let routine = self.routines?[indexPath.row] else {
-            return
-        }
-        print("Selected\(String(describing: routine.name))")
+//        guard let routine = self.routines?[indexPath.row] else {
+//            return
+//        }
+        performSegue(withIdentifier: "addRoutineSegue", sender: nil) 
         }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -91,6 +91,7 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
             if let dest = segue.destination.children[0] as? AddRoutineViewController {
                 let routine = Routine(name: "", date: Date(), exercises: [])
                 dest.routine = routine
+                dest.editMode = false
                 dest.delegate = self
             }
         }

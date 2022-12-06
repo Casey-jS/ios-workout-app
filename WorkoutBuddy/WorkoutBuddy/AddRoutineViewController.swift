@@ -17,13 +17,17 @@ class AddRoutineViewController: UIViewController {
     @IBOutlet weak var nameInput: UITextField!
     
     var routine: Routine?
-    var editMode: Bool
+    var editMode: Bool?
     var delegate: AddRoutineViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if(editMode == true){
+            titleLabel.text = "Edit Routine"
+        }
+        nameInput.text = routine?.name
     }
     
 
