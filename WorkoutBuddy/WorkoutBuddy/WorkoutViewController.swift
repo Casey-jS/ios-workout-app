@@ -126,8 +126,8 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 indexPath) as! WeightedTableViewCell
             if let exercise = self.exercises?[indexPath.row] {
                 cell.titleLabel.text = exercise.name
-                cell.setsLabel.text = String(exercise.sets!)
-                cell.repsLabel.text = "Reps: \(String(exercise.reps!))"
+                cell.setsLabel.text = "\(exercise.sets!)"
+                cell.repsLabel.text = "Reps: \(exercise.reps!)"
                 cell.weightLabel.text = "Weight: \(String(exercise.weight!))"
             }
             return cell
@@ -136,8 +136,8 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "nonWeightedCell", for: indexPath) as! NonWeightedTableViewCell
             if let exercise = self.exercises?[indexPath.row] {
                 cell.titleLabel.text = exercise.name
-                cell.setsLabel.text = String(exercise.sets!)
-                cell.repsLabel.text = "Reps: \(String(exercise.reps!))"
+                cell.setsLabel.text = "\(exercise.sets!)"
+                cell.repsLabel.text = "Reps: \(exercise.reps!)"
                 
             }
             return cell
@@ -157,6 +157,9 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         if(exercises![indexPath.row].type == "Cardio"){
             return 80.0
+        }
+        if(exercises![indexPath.row].type == "Weighted"){
+            return 120.0
         }
         return 100.0
     }

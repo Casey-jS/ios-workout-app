@@ -10,12 +10,10 @@ import UIKit
 class WeightedTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var plusButton: UIButton!
-    @IBOutlet var minusButton: UIButton!
     @IBOutlet var weightLabel: UILabel!
     @IBOutlet var repsLabel: UILabel!
     @IBOutlet var setsLabel: UILabel!
-    
+    @IBOutlet var weightedStepper: UIStepper!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,21 +22,13 @@ class WeightedTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        let sets = Double(setsLabel.text!)
+        weightedStepper.value = sets ?? 0.0
         // Configure the view for the selected state
     }
 
-    @IBAction func addSet(_ sender: Any) {
-        var temp: Int = Int(setsLabel.text!)!
-        temp += 1
-        setsLabel.text = String(temp)
+    @IBAction func changeSet(_ sender: Any) {
+        setsLabel.text = "\(Int(weightedStepper.value))"
     }
     
-    @IBAction func subtractSet(_ sender: Any) {
-        var temp: Int = Int(setsLabel.text!)!
-        if(temp > 0){
-            temp -= 1
-        }
-        setsLabel.text = String(temp)
-    }
 }

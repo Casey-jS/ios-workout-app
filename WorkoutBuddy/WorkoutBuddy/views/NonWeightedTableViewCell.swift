@@ -11,8 +11,7 @@ class NonWeightedTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var repsLabel: UILabel!
     @IBOutlet var setsLabel: UILabel!
-    @IBOutlet var minusButton: UIButton!
-    @IBOutlet var plusButton: UIButton!
+    @IBOutlet var nonWeightedStepper: UIStepper!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,20 +20,14 @@ class NonWeightedTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        let sets = Double(setsLabel.text!)
+        nonWeightedStepper.value = sets ?? 0.0
         // Configure the view for the selected state
     }
 
-    
-    @IBAction func addSet(_ sender: Any) {
-        var temp: Int = Int(setsLabel.text!)!
-        temp += 1
-        setsLabel.text = String(temp)
+    @IBAction func changeSets(_ sender: Any) {
+        setsLabel.text = "\(Int(nonWeightedStepper.value))"
     }
     
-    @IBAction func subtractSet(_ sender: Any) {
-        var temp: Int = Int(setsLabel.text!)!
-        temp -= 1
-        setsLabel.text = String(temp)
-    }
+
 }
