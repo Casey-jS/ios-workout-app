@@ -6,57 +6,99 @@
 //
 
 import Foundation
+import UIKit
 
-public struct Exercise{
-    var key: Int?
-    var type: String? 
-    var name: String?
-    var sets: Int?
-    var reps: Int?
-    var time: String?
-    var weight: Int?
+public class Exercise: NSObject, NSCoding {
+    var eKey: Int = -1
+    var type: String = ""
+    var name: String = ""
+    var eSets: Int = 0
+    var eReps: Int = 0
+    var eTime: String = ""
+    var eWeight: Int = 0
     
-//    let persistentContainer: NSPersistentContainer = {
-//        // creates the NSPersistentContainer object
-//        // must be given the name of the Core Data model file “Exercise”
-//        let container = NSPersistentContainer(name: "ExerciseEntity")
-//
-//        // load the saved database if it exists, creates it if it does not, and returns an error under failure conditions
-//        container.loadPersistentStores { (description, error) in
-//            if let error = error {
-//                print("Error setting up Core Data (\(error)).")
-//            }
-//        }
-//        return container
-//    }()
+    enum Key:String{
+        case eKey = "eKey"
+        case type = "type"
+        case name = "name"
+        case eSets = "eSets"
+        case eReps = "eReps"
+        case eTime = "eTime"
+        case eWeight = "eWeight"
+    }
     
     // General initializer
-    init(key: Int?, type: String?, name: String?, sets: Int?, reps: Int?, time: String?, weight: Int?){
-        self.key = key
+    init(key: Int, type: String, name: String, sets: Int, reps: Int, time: String, weight: Int){
+        self.eKey = key
         self.type = type
         self.name = name
-        self.sets = sets
-        self.reps = reps
-        self.time = time
-        self.weight = weight
+        self.eSets = sets
+        self.eReps = reps
+        self.eTime = time
+        self.eWeight = weight
     }
     // Initalizer for weighted exercises
-    init(key: Int?, type: String?, name: String?, sets: Int?, reps: Int?, weight: Int?){
-        self.init(key: key, type: type, name: name, sets: sets, reps: reps, time: nil, weight: weight)
+    convenience init(key: Int, type: String, name: String, sets: Int, reps: Int, weight: Int){
+        self.init(key: key, type: type, name: name, sets: sets, reps: reps, time: "", weight: weight)
     }
     // Initializer for non-weighted exercises
-    init(key: Int?, type: String?, name: String?, sets: Int?, reps: Int?){
-        self.init(key: key, type: type, name: name, sets: sets, reps: reps, time: nil, weight: nil)
+    convenience init(key: Int, type: String, name: String, sets: Int, reps: Int){
+        self.init(key: key, type: type, name: name, sets: sets, reps: reps, time: "", weight: 0)
     }
     // Initializer for cardio exercises
-    init(key: Int?, type: String?, name: String?, time: String?){
-        self.init(key: key, type: type, name: name, sets: nil, reps: nil, time: time, weight: nil)
+    convenience init(key: Int, type: String, name: String, time: String){
+        self.init(key: key, type: type, name: name, sets: 0, reps: 0, time: time, weight: 0)
     }
-    init(key: Int?, type: String?){
-        self.init(key: key, type: type, name: nil, sets: nil, reps: nil, time: nil, weight: nil)
+    convenience init(key: Int, type: String){
+        self.init(key: key, type: type, name: "", sets: 0, reps: 0, time: "", weight: 0)
     }
     // Empty initializer
-    init(){
-        self.init(key: nil, type: nil, name: nil, sets: nil, reps: nil, time: nil, weight: nil)
+    override convenience init(){
+        self.init(key: -1, type: "", name: "", sets: 0, reps: 0, time: "", weight: 0)
+    }
+    
+    public func encode(with aCoder: NSCoder){
+        aCoder.encode(eKey, forKey: Key.eKey.rawValue)
+        aCoder.encode(type, forKey: Key.type.rawValue)
+        aCoder.encode(name, forKey: Key.name.rawValue)
+        aCoder.encode(eSets, forKey: Key.eSets.rawValue)
+        aCoder.encode(eReps, forKey: Key.eReps.rawValue)
+        aCoder.encode(eTime, forKey: Key.eTime.rawValue)
+        aCoder.encode(eWeight, forKey: Key.eWeight.rawValue)
+    }
+    
+    public required convenience init?(coder aDecoder: NSCoder){
+        let mKey = aDecoder.decodeInt32(forKey: Key.eKey.rawValue)
+        let mType = aDecoder.decodeObject(forKey: Key.type.rawValue) as! String
+        let mName = aDecoder.decodeObject(forKey: Key.name.rawValue) as! String
+        let mSets = aDecoder.decodeInt32(forKey: Key.eSets.rawValue)
+        let mReps = aDecoder.decodeInt32(forKey: Key.eReps.rawValue)
+        let mTime = aDecoder.decodeObject(forKey: Key.eTime.rawValue) as! String
+        let mWeight = aDecoder.decodeInt32(forKey: Key.eWeight.rawValue)
+        
+        self.init(key: Int(mKey), type: mType , name: mName , sets: Int(mSets), reps: Int(mReps), time: mTime, weight: Int(mWeight))
+    }
+}
+
+public class Exercises: NSObject, NSCoding {
+    
+    public var exercises: [Exercise] = []
+    
+    enum Key: String {
+        case exercises = "exercises"
+    }
+    
+    init(exercises: [Exercise]) {
+        self.exercises = exercises
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(exercises, forKey: Key.exercises.rawValue)
+    }
+    
+    public required convenience init?(coder aDecoder: NSCoder){
+        let mExercises = aDecoder.decodeObject(forKey: Key.exercises.rawValue) as! [Exercise]
+        
+        self.init(exercises: mExercises)
     }
 }

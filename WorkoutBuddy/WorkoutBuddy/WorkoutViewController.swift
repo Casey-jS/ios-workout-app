@@ -126,9 +126,9 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 indexPath) as! WeightedTableViewCell
             if let exercise = self.exercises?[indexPath.row] {
                 cell.titleLabel.text = exercise.name
-                cell.setsLabel.text = "\(exercise.sets!)"
-                cell.repsLabel.text = "Reps: \(exercise.reps!)"
-                cell.weightLabel.text = "Weight: \(String(exercise.weight!))"
+                cell.setsLabel.text = "\(exercise.eSets)"
+                cell.repsLabel.text = "Reps: \(exercise.eReps)"
+                cell.weightLabel.text = "Weight: \(exercise.eWeight)"
             }
             return cell
         // Returns non weighted cell view
@@ -136,8 +136,8 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "nonWeightedCell", for: indexPath) as! NonWeightedTableViewCell
             if let exercise = self.exercises?[indexPath.row] {
                 cell.titleLabel.text = exercise.name
-                cell.setsLabel.text = "\(exercise.sets!)"
-                cell.repsLabel.text = "Reps: \(exercise.reps!)"
+                cell.setsLabel.text = "\(exercise.eSets)"
+                cell.repsLabel.text = "Reps: \(exercise.eReps)"
                 
             }
             return cell
@@ -146,7 +146,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "cardioCell", for: indexPath) as! CardioTableViewCell
             if let exercise = self.exercises?[indexPath.row] {
                 cell.titleLabel.text = exercise.name
-                cell.timeLabel.text = exercise.time
+                cell.timeLabel.text = exercise.eTime
             }
             return cell
         }
