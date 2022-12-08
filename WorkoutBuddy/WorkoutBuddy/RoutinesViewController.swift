@@ -22,9 +22,8 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-    //    createData()
         getRoutines()
-        
+        self.routines = self.routines.reversed()
         
         // Do any additional setup after loading the view.
         tableView.layer.cornerRadius = 5
@@ -90,7 +89,7 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addRoutineSegue" {
             if let dest = segue.destination.children[0] as? AddRoutineViewController {
-                let routine = Routine(key: self.routines.count + 1, name: "", date: Date(), exercises: [])
+                let routine = Routine(key: generateKey(), name: "", date: Date(), exercises: [])
                 dest.routine = routine
                 dest.editMode = false
                 dest.delegate = self
@@ -105,45 +104,22 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    
-    func createData(){
+    func generateKey() -> Int {
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        
-        let model = RoutineModel()
-        let routines = model.getRoutines()
-        
-        for r in routines {
-            let newRoutine = NSEntityDescription.entity(forEntityName: "RoutineEntity", in: managedContext)!
-            
-            let rout = NSManagedObject(entity: newRoutine, insertInto: managedContext) as! RoutineEntity
-            let mExercises = Exercises(exercises: r.exercises!)
-            
-
-            rout.setValue(mExercises, forKey: "exercises")
-            rout.setValue(r.name, forKey: "name")
-            rout.setValue(r.date, forKey: "date")
-            rout.setValue(r.key, forKey: "key")
+        var newKey = Int.random(in: 0...9999)
+        for r in self.routines{
+            if r.key == newKey{
+                newKey = generateKey()
+            }
         }
-        do {
-            try managedContext.save()
-            print("Success")
-        } catch {
-            print("Error saving: \(error)")
-        }
+        return newKey
     }
     
     func getRoutines(){
-        //As we know that container is set up in the AppDelegates so we need to refer that container.
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
                 
-        //We need to create a context from this container
         let managedContext = appDelegate.persistentContainer.viewContext
                 
-        //Prepare the request of type NSFetchRequest  for the entity
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RoutineEntity")
         
         do {
@@ -174,6 +150,28 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
 
 extension RoutinesViewController: AddRoutineViewControllerDelegate {
     func addRoutine(routine: Routine){
+        
+        // Saves new routine to Core Data
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        
+            let newRoutine = NSEntityDescription.entity(forEntityName: "RoutineEntity", in: managedContext)!
+            
+            let rout = NSManagedObject(entity: newRoutine, insertInto: managedContext) as! RoutineEntity
+            let mExercises = Exercises(exercises: routine.exercises!)
+            
+            rout.setValue(mExercises, forKey: "exercises")
+            rout.setValue(routine.name, forKey: "name")
+            rout.setValue(routine.date, forKey: "date")
+            rout.setValue(routine.key, forKey: "key")
+        do {
+            try managedContext.save()
+            print("Success")
+        } catch {
+            print("Error saving: \(error)")
+        }
+        
         // Inserts new exercise into exercises list
         self.routines.insert(routine, at: 0)
         DispatchQueue.main.async {

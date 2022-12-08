@@ -48,7 +48,9 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     @IBAction func addTapped(_ sender: Any) {
-        
+        if(running == true){
+            performSegue(withIdentifier: "addWorkoutExerciseSegue", sender: nil)
+        }
     }
     
     // Starts a workout when start button is tapped
@@ -76,6 +78,8 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    
     
     // MARK:  Timer functions
     @objc func timerCounter() -> Void {
