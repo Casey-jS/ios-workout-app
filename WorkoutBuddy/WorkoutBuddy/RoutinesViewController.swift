@@ -13,7 +13,7 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet var tableView: UITableView!
     
-    var routines: [Routine]?
+    var routines: [Routine] =  []
     var editRoutine: Routine?
     
     override func viewDidLoad() {
@@ -22,8 +22,9 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        createData()
+    //    createData()
         getRoutines()
+        
         
         // Do any additional setup after loading the view.
         tableView.layer.cornerRadius = 5
@@ -44,7 +45,7 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            routines?.remove(at: indexPath.row)
+            routines.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -55,11 +56,9 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let rout = self.routines {
-            return rout.count
-        }else{
-            return 0
-        }
+  
+            return routines.count
+  
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
     -> UITableViewCell
@@ -67,10 +66,10 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "routineCell", for: indexPath)
         
-        if let routine = self.routines?[indexPath.row]{
+        let routine = self.routines[indexPath.row]
             cell.textLabel?.text = routine.name
             cell.detailTextLabel?.text = routine.date?.formatted()
-        }
+        
         
         return cell
         
@@ -83,9 +82,7 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let routine = self.routines?[indexPath.row] else {
-            return
-        }
+        let routine = self.routines[indexPath.row]
         editRoutine = routine
         performSegue(withIdentifier: "editRoutineSegue", sender: nil)
     }
@@ -93,7 +90,7 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addRoutineSegue" {
             if let dest = segue.destination.children[0] as? AddRoutineViewController {
-                let routine = Routine(key: self.routines!.count + 1, name: "", date: Date(), exercises: [])
+                let routine = Routine(key: self.routines.count + 1, name: "", date: Date(), exercises: [])
                 dest.routine = routine
                 dest.editMode = false
                 dest.delegate = self
@@ -127,10 +124,9 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
             
 
             rout.setValue(mExercises, forKey: "exercises")
-            
-            rout.name = r.name
-            rout.date = r.date
-            rout.key = Int32(r.key!)
+            rout.setValue(r.name, forKey: "name")
+            rout.setValue(r.date, forKey: "date")
+            rout.setValue(r.key, forKey: "key")
         }
         do {
             try managedContext.save()
@@ -152,7 +148,22 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         do {
            let result = try managedContext.fetch(fetchRequest)
-            print(result)
+            
+            for data in result as! [NSManagedObject] {
+                
+                
+                let mExercises = data.value(forKey: "exercises") as! Exercises
+                let mName = data.value(forKey: "name") as! String
+                let mDate = data.value(forKey: "date") as! Date
+                let mKey = data.value(forKey: "key") as! Int
+                
+                let mExer = mExercises.exercises
+                
+                let rout = Routine(key: mKey, name: mName, date: mDate, exercises: mExer)
+                
+                self.routines.append(rout)
+            }
+            
             
             } catch {
                   
@@ -164,15 +175,15 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
 extension RoutinesViewController: AddRoutineViewControllerDelegate {
     func addRoutine(routine: Routine){
         // Inserts new exercise into exercises list
-        self.routines?.insert(routine, at: 0)
+        self.routines.insert(routine, at: 0)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     func replaceRoutine(routine: Routine){
         // Inserts new exercise into exercises list
-        self.routines?.removeAll(where: { $0.key == routine.key })
-        self.routines?.insert(routine, at: 0)
+        self.routines.removeAll(where: { $0.key == routine.key })
+        self.routines.insert(routine, at: 0)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

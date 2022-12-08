@@ -467,7 +467,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AeM-2R-tmf">
-                                <rect key="frame" x="-1" y="567" width="393" height="80"/>
+                                <rect key="frame" x="-2" y="567" width="394" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTa-Ax-PaC">
@@ -715,7 +715,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="O3K-Cx-pQc"/>
-        <segue reference="r45-gY-yL2"/>
+        <segue reference="KD5-gT-hJW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock" catalog="system" width="128" height="123"/>

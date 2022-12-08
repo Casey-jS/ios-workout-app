@@ -8,7 +8,10 @@
 import Foundation
 import UIKit
 
-public class Exercise: NSObject, NSCoding {
+public class Exercise: NSObject, NSSecureCoding {
+    
+    public static var supportsSecureCoding: Bool = true
+    
     var eKey: Int = -1
     var type: String = ""
     var name: String = ""
