@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ExerciseEntity" representedClassName="ExerciseEntity" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="reps" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="sets" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="time" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="type" optional="YES" attributeType="String"/>
-        <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RoutineEntity" representedClassName="RoutineEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="rDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="rExercises" optional="YES" attributeType="Transformable" customClassName="Exercises"/>
+        <attribute name="rKey" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rName" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="WorkoutEntity" representedClassName="WorkoutEntity" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="exercises" optional="YES" attributeType="Transformable" valueTransformerName="NSValueTransformer"/>
-        <attribute name="time" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="exercisesArray" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseEntity"/>
+    <entity name="WorkoutEntity" representedClassName="WorkoutEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="wDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="wExercises" optional="YES" attributeType="Transformable" customClassName="Exercises"/>
+        <attribute name="wTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>

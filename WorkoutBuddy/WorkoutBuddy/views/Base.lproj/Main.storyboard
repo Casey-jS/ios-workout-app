@@ -105,7 +105,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="routineCell" textLabel="k3f-et-3GS" detailTextLabel="3JC-xF-hC9" rowHeight="90" style="IBUITableViewCellStyleSubtitle" id="ZXD-Ee-fKZ" customClass="RoutineTableViewCell" customModule="WorkoutBuddy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="routineCell" textLabel="k3f-et-3GS" detailTextLabel="3JC-xF-hC9" rowHeight="90" style="IBUITableViewCellStyleSubtitle" id="ZXD-Ee-fKZ">
                                         <rect key="frame" x="0.0" y="50" width="361" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZXD-Ee-fKZ" id="pA9-hY-opW">
@@ -355,7 +355,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="kOG-5i-ygx" kind="presentation" identifier="addWorkoutExerciseSegue" modalPresentationStyle="automatic" id="r45-gY-yL2"/>
+                                    <action selector="addTapped:" destination="ekg-sp-Fwd" eventType="touchUpInside" id="gjG-Jh-V89"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmA-8b-0df">
@@ -381,6 +381,7 @@
                         <outlet property="startButton" destination="68z-q5-7rP" id="H33-bg-0gU"/>
                         <outlet property="tableView" destination="hyX-UF-JuK" id="yxy-Qb-Yeb"/>
                         <outlet property="timerLabel" destination="NzB-2r-kKM" id="AgE-y6-Cay"/>
+                        <segue destination="kOG-5i-ygx" kind="presentation" identifier="addWorkoutExerciseSegue" id="5SD-DD-Diz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ahm-7z-F5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -467,7 +468,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AeM-2R-tmf">
-                                <rect key="frame" x="-1" y="567" width="393" height="80"/>
+                                <rect key="frame" x="-2" y="567" width="394" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTa-Ax-PaC">
@@ -560,8 +561,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -576,7 +577,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNH-sW-w3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1391.6030534351144" y="1167.605633802817"/>
+            <point key="canvasLocation" x="1392" y="1154"/>
         </scene>
         <!--Add Routine View Controller-->
         <scene sceneID="cwY-1c-uQd">
@@ -692,7 +693,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mV5-yR-ugE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="126" y="2661"/>
+            <point key="canvasLocation" x="137" y="2661"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="t71-lb-a6B">
@@ -715,7 +716,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="O3K-Cx-pQc"/>
-        <segue reference="r45-gY-yL2"/>
+        <segue reference="5SD-DD-Diz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock" catalog="system" width="128" height="123"/>

@@ -20,19 +20,17 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     var timer: Timer = Timer()
     var count: Int = 0
     
-    var exercises: [Exercise]?
+    var exercises: [Exercise] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Sets a monospaced font so timer doesn't shake
         timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 65, weight: UIFont.Weight.regular)
         
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        let model = ExerciseModel()
-        self.exercises = model.getExercises()
 
         // Rounds start button and timer label
         startButton.layer.cornerRadius = startButton.frame.width / 2
@@ -48,7 +46,17 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     @IBAction func addTapped(_ sender: Any) {
-        
+        if(running == true){
+            performSegue(withIdentifier: "addWorkoutExerciseSegue", sender: nil)
+        }else{
+            let alert = UIAlertController(title: "Begin workout?", message: "Would you like to begin a workout?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "NO", style: .cancel))
+            alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
+                self.startTapped(self)
+                self.performSegue(withIdentifier: "addWorkoutExerciseSegue", sender: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     // Starts a workout when start button is tapped
@@ -61,6 +69,10 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             let alert = UIAlertController(title: "Finish workout?", message: "Are you sure would like to finish your workout?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel))
             alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
+                
+                let workout = Workout(date: Date(), time: self.count, exercises: self.exercises)
+                self.addWorkout(workout: workout)
+                
                 self.count = 0
                 self.timer.invalidate()
                 self.timerLabel.text = self.makeTimeString(hours: 0, minutes: 0, seconds: 0)
@@ -74,6 +86,30 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 
             }))
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func addWorkout(workout: Workout){
+        
+        // Saves new routine to Core Data
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        
+        let newWorkout = NSEntityDescription.entity(forEntityName: "WorkoutEntity", in: managedContext)!
+            
+        let work = NSManagedObject(entity: newWorkout, insertInto: managedContext) as! WorkoutEntity
+        let mExercises = Exercises(exercises: workout.exercises!)
+            
+        work.setValue(mExercises, forKey: "wExercises")
+        work.setValue(workout.date, forKey: "wDate")
+        work.setValue(workout.time, forKey: "wTime")
+        
+        do {
+            try managedContext.save()
+            print("Success")
+        } catch {
+            print("Error saving: \(error)")
         }
     }
     
@@ -99,7 +135,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            exercises?.remove(at: indexPath.row)
+            exercises.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -109,11 +145,8 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let exer = self.exercises {
-            return exer.count
-        }else{
-            return 0
-        }
+        return self.exercises.count
+  
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell
@@ -121,33 +154,33 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
         // Returns weighted cell view
-        if(exercises![indexPath.row].type == "Weighted"){
+        if(exercises[indexPath.row].type == "Weighted"){
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "weightedCell", for:
                 indexPath) as! WeightedTableViewCell
-            if let exercise = self.exercises?[indexPath.row] {
+            let exercise = self.exercises[indexPath.row]
                 cell.titleLabel.text = exercise.name
-                cell.setsLabel.text = "\(exercise.sets!)"
-                cell.repsLabel.text = "Reps: \(exercise.reps!)"
-                cell.weightLabel.text = "Weight: \(String(exercise.weight!))"
-            }
+                cell.setsLabel.text = "\(exercise.eSets)"
+                cell.repsLabel.text = "Reps: \(exercise.eReps)"
+                cell.weightLabel.text = "Weight: \(exercise.eWeight)"
+   
             return cell
         // Returns non weighted cell view
-        }else if(exercises![indexPath.row].type == "Non-Weighted"){
+        }else if(exercises[indexPath.row].type == "Non-Weighted"){
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "nonWeightedCell", for: indexPath) as! NonWeightedTableViewCell
-            if let exercise = self.exercises?[indexPath.row] {
+            let exercise = self.exercises[indexPath.row]
                 cell.titleLabel.text = exercise.name
-                cell.setsLabel.text = "\(exercise.sets!)"
-                cell.repsLabel.text = "Reps: \(exercise.reps!)"
+                cell.setsLabel.text = "\(exercise.eSets)"
+                cell.repsLabel.text = "Reps: \(exercise.eReps)"
                 
-            }
+    
             return cell
         // Returns cardio cell view
         }else{
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "cardioCell", for: indexPath) as! CardioTableViewCell
-            if let exercise = self.exercises?[indexPath.row] {
+            let exercise = self.exercises[indexPath.row]
                 cell.titleLabel.text = exercise.name
-                cell.timeLabel.text = exercise.time
-            }
+                cell.timeLabel.text = exercise.eTime
+       
             return cell
         }
     }
@@ -155,26 +188,19 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if(exercises![indexPath.row].type == "Cardio"){
+        if(exercises[indexPath.row].type == "Cardio"){
             return 80.0
         }
-        if(exercises![indexPath.row].type == "Weighted"){
+        if(exercises[indexPath.row].type == "Weighted"){
             return 120.0
         }
         return 100.0
     }
-        
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            guard let exercise = self.exercises?[indexPath.row] else {
-                return
-            }
-            print("Selected\(String(describing: exercise.name))")
-        }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addWorkoutExerciseSegue" {
             if let dest = segue.destination.children[0] as? AddExerciseViewController {
-                let newExercise = Exercise(key: (self.exercises!.count + 1), type: "Weighted")
+                let newExercise = Exercise(key: (self.exercises.count + 1), type: "Weighted")
                 dest.newExercise = newExercise
                 dest.delegate = self
             }
@@ -187,7 +213,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
 extension WorkoutViewController : AddExerciseViewControllerDelegate {
     func newExercise(exercise: Exercise){
         // Inserts new exercise into exercises list
-        self.exercises?.insert(exercise, at: 0)
+        self.exercises.insert(exercise, at: 0)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

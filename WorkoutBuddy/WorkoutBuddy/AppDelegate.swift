@@ -76,6 +76,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func clearData(){
+                
+        let storeContainer = persistentContainer.persistentStoreCoordinator
+        
+        for store in storeContainer.persistentStores {
+            do{
+                try storeContainer.destroyPersistentStore(at: store.url!, ofType: store.type)
+            } catch {
+                fatalError("Unresolved error")
+            }
+        }
+        
+        persistentContainer = NSPersistentContainer(
+            name: "WorkoutBuddy"
+        )
+        
+        persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+    }
 
 }
 

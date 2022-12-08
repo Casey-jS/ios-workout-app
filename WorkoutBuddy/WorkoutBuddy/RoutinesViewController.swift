@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 
 class RoutinesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet var tableView: UITableView!
     
-    var routines: [Routine]?
+    var routines: [Routine] =  []
     var editRoutine: Routine?
     
     override func viewDidLoad() {
@@ -20,29 +21,30 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        let model = RoutineModel()
-        self.routines = model.getRoutines()
-
+        
+        getRoutines()
+        self.routines = self.routines.reversed()
+        
         // Do any additional setup after loading the view.
         tableView.layer.cornerRadius = 5
         tableView.layer.masksToBounds = true
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            routines?.remove(at: indexPath.row)
+            routines.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -53,25 +55,23 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let rout = self.routines {
-            return rout.count
-        }else{
-            return 0
-        }
+  
+            return routines.count
+  
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
-        -> UITableViewCell
+    -> UITableViewCell
     {
-
+        
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "routineCell", for: indexPath)
         
-        if let routine = self.routines?[indexPath.row]{
+        let routine = self.routines[indexPath.row]
             cell.textLabel?.text = routine.name
             cell.detailTextLabel?.text = routine.date?.formatted()
-        }
-            
+        
+        
         return cell
-
+        
     }
     
     // MARK: UITableViewDelegate
@@ -79,19 +79,17 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     {
         return 90.0
     }
-        
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let routine = self.routines?[indexPath.row] else {
-            return
-        }
+        let routine = self.routines[indexPath.row]
         editRoutine = routine
         performSegue(withIdentifier: "editRoutineSegue", sender: nil)
-        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addRoutineSegue" {
             if let dest = segue.destination.children[0] as? AddRoutineViewController {
-                let routine = Routine(key: self.routines!.count + 1, name: "", date: Date(), exercises: [])
+                let routine = Routine(key: generateKey(), name: "", date: Date(), exercises: [])
                 dest.routine = routine
                 dest.editMode = false
                 dest.delegate = self
@@ -105,20 +103,85 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
     }
+    
+    func generateKey() -> Int {
+        
+        var newKey = Int.random(in: 0...9999)
+        for r in self.routines{
+            if r.key == newKey{
+                newKey = generateKey()
+            }
+        }
+        return newKey
+    }
+    
+    func getRoutines(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                
+        let managedContext = appDelegate.persistentContainer.viewContext
+                
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RoutineEntity")
+        
+        do {
+           let result = try managedContext.fetch(fetchRequest)
+            
+            for data in result as! [NSManagedObject] {
+                
+                
+                let mExercises = data.value(forKey: "rExercises") as! Exercises
+                let mName = data.value(forKey: "rName") as! String
+                let mDate = data.value(forKey: "rDate") as! Date
+                let mKey = data.value(forKey: "rKey") as! Int
+                
+                let mExer = mExercises.exercises
+                
+                let rout = Routine(key: mKey, name: mName, date: mDate, exercises: mExer)
+                
+                self.routines.append(rout)
+            }
+            
+            
+            } catch {
+                  
+                print("Failed")
+            }
+    }
 }
 
 extension RoutinesViewController: AddRoutineViewControllerDelegate {
     func addRoutine(routine: Routine){
+        
+        // Saves new routine to Core Data
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        
+            let newRoutine = NSEntityDescription.entity(forEntityName: "RoutineEntity", in: managedContext)!
+            
+            let rout = NSManagedObject(entity: newRoutine, insertInto: managedContext) as! RoutineEntity
+            let mExercises = Exercises(exercises: routine.exercises!)
+            
+            rout.setValue(mExercises, forKey: "rExercises")
+            rout.setValue(routine.name, forKey: "rName")
+            rout.setValue(routine.date, forKey: "rDate")
+            rout.setValue(routine.key, forKey: "rKey")
+        do {
+            try managedContext.save()
+            print("Success")
+        } catch {
+            print("Error saving: \(error)")
+        }
+        
         // Inserts new exercise into exercises list
-        self.routines?.insert(routine, at: 0)
+        self.routines.insert(routine, at: 0)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     func replaceRoutine(routine: Routine){
         // Inserts new exercise into exercises list
-        self.routines?.removeAll(where: { $0.key == routine.key })
-        self.routines?.insert(routine, at: 0)
+        self.routines.removeAll(where: { $0.key == routine.key })
+        self.routines.insert(routine, at: 0)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

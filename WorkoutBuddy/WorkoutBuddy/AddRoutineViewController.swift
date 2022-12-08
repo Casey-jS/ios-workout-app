@@ -87,10 +87,10 @@ class AddRoutineViewController: UIViewController, UITableViewDataSource, UITable
         if let exercise = self.routine?.exercises?[indexPath.row] {
             if(exercise.type == "Weighted"){
                 cell.textLabel?.text = exercise.name
-                cell.detailTextLabel?.text = "Sets: \(exercise.sets ?? 0)   Reps: \(exercise.reps ?? 0)   Weight: \(exercise.weight ?? 0)"
+                cell.detailTextLabel?.text = "Sets: \(exercise.eSets )   Reps: \(exercise.eReps )   Weight: \(exercise.eWeight )"
             }else if(exercise.type == "Non-Weighted"){
                 cell.textLabel?.text = exercise.name
-                cell.detailTextLabel?.text = "Sets: \(exercise.sets ?? 0)   Reps: \(exercise.reps ?? 0)"
+                cell.detailTextLabel?.text = "Sets: \(exercise.eSets )   Reps: \(exercise.eReps )"
             }else{
                 cell.textLabel?.text = exercise.name
                 cell.detailTextLabel?.text = ""

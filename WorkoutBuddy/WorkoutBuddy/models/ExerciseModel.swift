@@ -16,7 +16,7 @@ class ExerciseModel {
         return self.items
     }
     fileprivate func createExercises(){
-        items.append(Exercise(key: 1, type: "Weighted", name: "Benchpress", sets: 4, reps: 10, weight: 145))
+        items.append(Exercise(key: 1, type: "Weighted", name: "Benchpress", sets: 4, reps: 10, time: "0:00:00", weight: 145))
         items.append(Exercise(key: 2, type: "Weighted", name: "Squat", sets: 4, reps: 12, weight: 225))
         items.append(Exercise(key: 6, type: "Non-Weighted", name: "Pull-ups", sets: 4, reps: 10))
         items.append(Exercise(key: 3, type: "Weighted", name: "Deadlift", sets: 2, reps: 20, weight: 225))

@@ -23,10 +23,6 @@
 		C981F0D72932A7330046B17E /* WorkoutBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0D62932A7330046B17E /* WorkoutBuddyTests.swift */; };
 		C981F0E12932A7330046B17E /* WorkoutBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0E02932A7330046B17E /* WorkoutBuddyUITests.swift */; };
 		C981F0E32932A7330046B17E /* WorkoutBuddyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0E22932A7330046B17E /* WorkoutBuddyUITestsLaunchTests.swift */; };
-		C981F0F4293DB8900046B17E /* WorkoutEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F2293DB8900046B17E /* WorkoutEntity+CoreDataClass.swift */; };
-		C981F0F5293DB8900046B17E /* WorkoutEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F3293DB8900046B17E /* WorkoutEntity+CoreDataProperties.swift */; };
-		C981F0F8293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F6293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift */; };
-		C981F0F9293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981F0F7293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift */; };
 		F802D843293E913300D2CD15 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D842293E913300D2CD15 /* RoutinesViewController.swift */; };
 		F802D849293E95C200D2CD15 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D848293E95C200D2CD15 /* Routine.swift */; };
 		F802D84B293E962E00D2CD15 /* RoutineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F802D84A293E962D00D2CD15 /* RoutineModel.swift */; };
@@ -74,10 +70,6 @@
 		C981F0DC2932A7330046B17E /* WorkoutBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C981F0E02932A7330046B17E /* WorkoutBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutBuddyUITests.swift; sourceTree = "<group>"; };
 		C981F0E22932A7330046B17E /* WorkoutBuddyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutBuddyUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C981F0F2293DB8900046B17E /* WorkoutEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C981F0F3293DB8900046B17E /* WorkoutEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C981F0F6293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C981F0F7293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F802D842293E913300D2CD15 /* RoutinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
 		F802D848293E95C200D2CD15 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		F802D84A293E962D00D2CD15 /* RoutineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel.swift; sourceTree = "<group>"; };
@@ -140,10 +132,6 @@
 		C981F0B02932A72C0046B17E = {
 			isa = PBXGroup;
 			children = (
-				C981F0F6293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift */,
-				C981F0F7293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift */,
-				C981F0F2293DB8900046B17E /* WorkoutEntity+CoreDataClass.swift */,
-				C981F0F3293DB8900046B17E /* WorkoutEntity+CoreDataProperties.swift */,
 				C981F0BB2932A72D0046B17E /* WorkoutBuddy */,
 				C981F0D52932A7330046B17E /* WorkoutBuddyTests */,
 				C981F0DF2932A7330046B17E /* WorkoutBuddyUITests */,
@@ -336,7 +324,6 @@
 				70B8EDA32936727F00C57A76 /* WorkoutViewController.swift in Sources */,
 				F802D84D293EB83300D2CD15 /* AddRoutineViewController.swift in Sources */,
 				F807B04E2936EEB70020AE82 /* WeightedTableViewCell.swift in Sources */,
-				C981F0F5293DB8900046B17E /* WorkoutEntity+CoreDataProperties.swift in Sources */,
 				702BDCA72936888A00643ADA /* AddExerciseViewController.swift in Sources */,
 				F802D849293E95C200D2CD15 /* Routine.swift in Sources */,
 				70B8EDA5293672E400C57A76 /* HistoryViewController.swift in Sources */,
@@ -344,11 +331,8 @@
 				F807B0522936FD4A0020AE82 /* CardioTableViewCell.swift in Sources */,
 				702BDCAB29368E5200643ADA /* ExerciseModel.swift in Sources */,
 				F802D843293E913300D2CD15 /* RoutinesViewController.swift in Sources */,
-				C981F0F4293DB8900046B17E /* WorkoutEntity+CoreDataClass.swift in Sources */,
-				C981F0F8293DBFDB0046B17E /* ExerciseEntity+CoreDataClass.swift in Sources */,
 				F802D84B293E962E00D2CD15 /* RoutineModel.swift in Sources */,
 				C981F0BF2932A72D0046B17E /* SceneDelegate.swift in Sources */,
-				C981F0F9293DBFDB0046B17E /* ExerciseEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

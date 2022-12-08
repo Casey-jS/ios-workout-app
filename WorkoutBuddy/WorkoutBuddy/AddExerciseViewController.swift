@@ -89,7 +89,7 @@ class AddExerciseViewController: UIViewController {
     
     @IBAction func addTapped(_ sender: Any) {
         
-        newExercise?.name = nameLabel.text
+        newExercise?.name = nameLabel.text!
         
         if(newExercise?.type == "Weighted"){
             
@@ -98,17 +98,17 @@ class AddExerciseViewController: UIViewController {
             if (weightInput.text?.isEmpty == true){
                 weightStr = "0"
             }
-            newExercise?.weight = Int(weightStr!)
+            newExercise?.eWeight = Int(weightStr!)!
             
             // if no reps input is given, make 0
             var repsStr = repsInput.text
             if (repsInput.text?.isEmpty == true){
                 repsStr = "0"
             }
-            newExercise?.reps = Int(repsStr!)
+            newExercise?.eReps = Int(repsStr!)!
             
             // 0 is default for sets
-            newExercise?.sets = Int(setsLabel.text!)
+            newExercise?.eSets = Int(setsLabel.text!)!
             
         }else if(newExercise?.type == "Non-Weighted"){
             // if no reps input is given, make 0
@@ -116,13 +116,13 @@ class AddExerciseViewController: UIViewController {
             if (repsInput.text?.isEmpty == true){
                 repsStr = "0"
             }
-            newExercise?.reps = Int(repsStr!)
+            newExercise?.eReps = Int(repsStr!)!
             
             // 0 is default for sets
-            newExercise?.sets = Int(setsLabel.text!)
+            newExercise?.eSets = Int(setsLabel.text!)!
         }else{
             // Sets time to 0
-            newExercise?.time = "0:00:00"
+            newExercise?.eTime = "0:00:00"
         }
         
         if let del = self.delegate {
