@@ -50,6 +50,13 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func addTapped(_ sender: Any) {
         if(running == true){
             performSegue(withIdentifier: "addWorkoutExerciseSegue", sender: nil)
+        }else{
+            let alert = UIAlertController(title: "Begin workout?", message: "Would you like to begin a workout?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "NO", style: .cancel))
+            alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
+                self.startTapped(self)
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
