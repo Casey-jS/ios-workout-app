@@ -17,8 +17,8 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     var editRoutine: Routine?
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        super.viewDidLoad()        
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -44,6 +44,32 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let routineToDelete: Int32 = Int32(routines[indexPath.row].key!)
+            
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RoutineEntity")
+            do{
+                let result = try managedContext.fetch(request)
+                for routine in result as! [NSManagedObject]{
+                    if routine.value(forKey: "rKey") as! Int32 == routineToDelete{
+                        managedContext.delete(routine)
+                    }
+                }
+            } catch{
+                print("Failed to find")
+            }
+            do{
+                try managedContext.save()
+            }
+            catch{
+                print("error deleting from core data")
+            }
+            
+            
+            
+            
             routines.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
