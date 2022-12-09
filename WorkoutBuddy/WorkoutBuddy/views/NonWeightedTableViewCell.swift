@@ -13,6 +13,10 @@ class NonWeightedTableViewCell: UITableViewCell {
     @IBOutlet var setsLabel: UILabel!
     @IBOutlet var nonWeightedStepper: UIStepper!
     
+    var exercise: Exercise?
+    
+    weak var delegate: NonWeightedTableViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,7 +31,15 @@ class NonWeightedTableViewCell: UITableViewCell {
 
     @IBAction func changeSets(_ sender: Any) {
         setsLabel.text = "\(Int(nonWeightedStepper.value))"
+        if let key = exercise?.eKey,
+           let _ = delegate {
+            self.delegate?.setSets(self, changeSetsTo: Int(nonWeightedStepper.value), forKey: key)
+        }
     }
     
 
+}
+
+protocol NonWeightedTableViewCellDelegate: AnyObject {
+    func setSets(_ nonWeightedTableViewCell: NonWeightedTableViewCell, changeSetsTo sets: Int, forKey key: Int)
 }

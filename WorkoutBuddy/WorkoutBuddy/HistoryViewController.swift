@@ -11,8 +11,11 @@ import CoreData
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet var tableView: UITableView!
-
+    
+    private let refreshControl = UIRefreshControl()
+    
     var history: [Workout] = []
+    var selectedWorkout: Workout?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +29,52 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.getHistory()
         self.history = self.history.reversed()
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshHistory(_:)), for: .valueChanged)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: Menu)
+    }
+    
+    var menuItems: [UIAction] {
+        return [
+            UIAction(title: "Clear History", image: UIImage(systemName: "trash"), handler: { _ in self.clearHistory()
+            }),
+        ]
+    }
+
+    var Menu: UIMenu {
+        return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
+    }
+    
+    @objc private func refreshHistory(_ sender: Any){
+        DispatchQueue.main.async {
+            self.history = []
+            self.getHistory()
+            self.history = self.history.reversed()
+            self.tableView.reloadData()
+        }
+        self.refreshControl.endRefreshing()
+    }
+    
+    func clearHistory(){
+        
+        self.history = []
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        }
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "WorkoutEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try managedContext.execute(deleteRequest)
+            try managedContext.save()
+        }
+        catch{
+            print("Failed to clear history")
         }
     }
     
@@ -74,6 +121,14 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         return timeString
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "historyWorkoutSegue" {
+            if let dest = segue.destination.children[0] as? WorkoutHistoryViewController {
+                dest.workout = selectedWorkout
+            }
+        }
+    }
+    
     
     // MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -110,18 +165,10 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let workout = self.history[indexPath.row]
-        print("Clicked \(workout)")
+        selectedWorkout = workout
+        performSegue(withIdentifier: "historyWorkoutSegue", sender: self)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

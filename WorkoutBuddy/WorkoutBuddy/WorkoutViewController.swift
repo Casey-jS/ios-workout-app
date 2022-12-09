@@ -48,10 +48,18 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         return [
             UIAction(title: "Load Workout", image: nil, handler: { _ in self.performSegue(withIdentifier: "loadWorkoutSegue", sender: self)
             }),
-
+            UIAction(title: "Clear Exercises", image: nil, handler: { _ in self.clearExercises()
+            }),
         ]
     }
 
+    func clearExercises(){
+        self.exercises = []
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     var Menu: UIMenu {
         return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
     }
@@ -175,6 +183,8 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.setsLabel.text = "\(exercise.eSets)"
                 cell.repsLabel.text = "Reps: \(exercise.eReps)"
                 cell.weightLabel.text = "Weight: \(exercise.eWeight)"
+            cell.exercise = exercise
+            cell.delegate = self
    
             return cell
         // Returns non weighted cell view
@@ -184,16 +194,18 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.titleLabel.text = exercise.name
                 cell.setsLabel.text = "\(exercise.eSets)"
                 cell.repsLabel.text = "Reps: \(exercise.eReps)"
-                
+            cell.exercise = exercise
+            cell.delegate = self
     
             return cell
         // Returns cardio cell view
         }else{
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "cardioCell", for: indexPath) as! CardioTableViewCell
             let exercise = self.exercises[indexPath.row]
-                cell.titleLabel.text = exercise.name
-                cell.timeLabel.text = exercise.eTime
-       
+            cell.titleLabel.text = exercise.name
+            cell.timeLabel.text = exercise.eTime
+            cell.exercise = exercise
+            cell.delegate = self
             return cell
         }
     }
@@ -210,10 +222,22 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         return 100.0
     }
 
+    func generateKey() -> Int {
+        
+        var newKey = Int.random(in: 0...9999)
+        let exercises = self.exercises
+        for r in exercises{
+            if r.eKey == newKey{
+                newKey = generateKey()
+            }
+        }
+        return newKey
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addWorkoutExerciseSegue" {
             if let dest = segue.destination.children[0] as? AddExerciseViewController {
-                let newExercise = Exercise(key: (self.exercises.count + 1), type: "Weighted")
+                let newExercise = Exercise(key: generateKey(), type: "Weighted")
                 dest.newExercise = newExercise
                 dest.delegate = self
             }
@@ -245,4 +269,37 @@ extension WorkoutViewController: LoadWorkoutViewControllerDelegate {
         }
     }
 }
+
+extension WorkoutViewController : CardioTableViewCellDelegate {
+    func setTime(_ cardioTableViewCell: CardioTableViewCell, timerChangeTo count: Int, forKey key: Int) {
+        for e in self.exercises {
+            if e.eKey == key {
+                let time = secondsToHoursMinutesSeconds(seconds: count)
+                let timeString = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
+                e.eTime = timeString
+            }
+        }
+    }
+}
+
+extension WorkoutViewController : WeightedTableViewCellDelegate {
+    func setSets(_ WeightedTableViewCell: WeightedTableViewCell, changeSetsTo sets: Int, forKey key: Int) {
+        for e in self.exercises {
+            if e.eKey == key {
+                e.eSets = sets
+            }
+        }
+    }
+}
+
+extension WorkoutViewController : NonWeightedTableViewCellDelegate {
+    func setSets(_ nonWeightedTableViewCell: NonWeightedTableViewCell, changeSetsTo sets: Int, forKey key: Int) {
+        for e in self.exercises {
+            if e.eKey == key {
+                e.eSets = sets
+            }
+        }
+    }
+}
+
 

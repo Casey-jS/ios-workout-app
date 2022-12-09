@@ -16,6 +16,10 @@ class CardioTableViewCell: UITableViewCell {
     var cardioTimer: Timer = Timer()
     var cardioCount: Int = 0
     
+    var exercise: Exercise?
+    
+    weak var delegate : CardioTableViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Sets a monospaced font so timer doesn't shake
@@ -33,9 +37,13 @@ class CardioTableViewCell: UITableViewCell {
             self.cardioRunning = true
             self.cardioTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
         }else{
-                self.cardioTimer.invalidate()
-                self.cardioStartButton.setTitle("Start", for: .normal)
-                self.cardioRunning = false
+            self.cardioTimer.invalidate()
+            self.cardioStartButton.setTitle("Start", for: .normal)
+            self.cardioRunning = false
+            if let key = exercise?.eKey,
+               let _ = delegate {
+                self.delegate?.setTime(self, timerChangeTo: cardioCount, forKey: key)
+            }
         }
     }
     
@@ -58,4 +66,8 @@ class CardioTableViewCell: UITableViewCell {
         timeString += String(format: "%02d", seconds)
         return timeString
     }
+}
+
+protocol CardioTableViewCellDelegate: AnyObject {
+    func setTime(_ cardioTableViewCell: CardioTableViewCell, timerChangeTo count: Int, forKey key: Int)
 }

@@ -10,6 +10,7 @@
 		702BDCA72936888A00643ADA /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BDCA62936888A00643ADA /* AddExerciseViewController.swift */; };
 		702BDCA929368ABD00643ADA /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BDCA829368ABD00643ADA /* Exercise.swift */; };
 		702BDCAB29368E5200643ADA /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BDCAA29368E5200643ADA /* ExerciseModel.swift */; };
+		707956B82943BD5C00218608 /* WorkoutHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707956B72943BD5C00218608 /* WorkoutHistoryViewController.swift */; };
 		70B8EDA32936727F00C57A76 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8EDA22936727F00C57A76 /* WorkoutViewController.swift */; };
 		70B8EDA5293672E400C57A76 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8EDA4293672E400C57A76 /* HistoryViewController.swift */; };
 		70F951C42938F54C00B9EBC2 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F951C32938F54C00B9EBC2 /* Workout.swift */; };
@@ -54,6 +55,7 @@
 		702BDCA62936888A00643ADA /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
 		702BDCA829368ABD00643ADA /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		702BDCAA29368E5200643ADA /* ExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseModel.swift; sourceTree = "<group>"; };
+		707956B72943BD5C00218608 /* WorkoutHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryViewController.swift; sourceTree = "<group>"; };
 		70B8EDA22936727F00C57A76 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		70B8EDA4293672E400C57A76 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		70F951C32938F54C00B9EBC2 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		C981F0BB2932A72D0046B17E /* WorkoutBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				707956B72943BD5C00218608 /* WorkoutHistoryViewController.swift */,
 				F8451D402942F14200EF38AE /* LoadWorkoutViewController.swift */,
 				F802D84C293EB83300D2CD15 /* AddRoutineViewController.swift */,
 				702BDCA62936888A00643ADA /* AddExerciseViewController.swift */,
@@ -337,6 +340,7 @@
 				F802D84B293E962E00D2CD15 /* RoutineModel.swift in Sources */,
 				F8451D412942F14200EF38AE /* LoadWorkoutViewController.swift in Sources */,
 				C981F0BF2932A72D0046B17E /* SceneDelegate.swift in Sources */,
+				707956B82943BD5C00218608 /* WorkoutHistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,6 +28,39 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         // Do any additional setup after loading the view.
         tableView.layer.cornerRadius = 5
         tableView.layer.masksToBounds = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: Menu)
+    }
+    
+    var menuItems: [UIAction] {
+        return [
+            UIAction(title: "Clear Routines", image: UIImage(systemName: "trash"), handler: { _ in self.clearRoutines()
+            }),
+        ]
+    }
+
+    var Menu: UIMenu {
+        return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
+    }
+    
+    func clearRoutines(){
+        
+        self.routines = []
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "RoutineEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try managedContext.execute(deleteRequest)
+            try managedContext.save()
+        }
+        catch{
+            print("Failed to clear history")
+        }
     }
     
     

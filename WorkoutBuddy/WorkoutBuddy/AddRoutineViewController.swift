@@ -99,11 +99,23 @@ class AddRoutineViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
+    func generateKey() -> Int {
+        
+        var newKey = Int.random(in: 0...9999)
+        let exercises = self.routine?.exercises
+        for r in exercises!{
+            if r.eKey == newKey{
+                newKey = generateKey()
+            }
+        }
+        return newKey
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addRoutineExerciseSegue" {
             if let dest = segue.destination.children[0] as? AddExerciseViewController {
-                let newExercise = Exercise(key: ((self.routine?.exercises!.count)! + 1), type: "Weighted")
+                let newExercise = Exercise(key: generateKey(), type: "Weighted")
                 dest.newExercise = newExercise
                 dest.delegate = self
             }
