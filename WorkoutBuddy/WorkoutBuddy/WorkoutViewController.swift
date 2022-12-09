@@ -15,7 +15,6 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    
     var running = false
     var timer: Timer = Timer()
     var count: Int = 0
@@ -24,7 +23,6 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // Sets a monospaced font so timer doesn't shake
         timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 65, weight: UIFont.Weight.regular)
@@ -41,6 +39,21 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         
         tableView.layer.cornerRadius = 5
         tableView.layer.masksToBounds = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: Menu)
+        
+    }
+    
+    var menuItems: [UIAction] {
+        return [
+            UIAction(title: "Load Workout", image: nil, handler: { _ in self.performSegue(withIdentifier: "loadWorkoutSegue", sender: self)
+            }),
+
+        ]
+    }
+
+    var Menu: UIMenu {
+        return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
     }
     
     
@@ -205,6 +218,11 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 dest.delegate = self
             }
         }
+        if segue.identifier == "loadWorkoutSegue" {
+            if let dest = segue.destination.children[0] as? LoadWorkoutViewController {
+                dest.delegate = self
+            }
+        }
     }
     
 }
@@ -214,6 +232,14 @@ extension WorkoutViewController : AddExerciseViewControllerDelegate {
     func newExercise(exercise: Exercise){
         // Inserts new exercise into exercises list
         self.exercises.insert(exercise, at: 0)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+extension WorkoutViewController: LoadWorkoutViewControllerDelegate {
+    func loadWorkout(exercises: [Exercise]){
+        self.exercises = exercises
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

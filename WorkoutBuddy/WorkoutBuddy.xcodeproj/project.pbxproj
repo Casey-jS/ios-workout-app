@@ -30,6 +30,7 @@
 		F807B04E2936EEB70020AE82 /* WeightedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807B04D2936EEB70020AE82 /* WeightedTableViewCell.swift */; };
 		F807B0502936FD370020AE82 /* NonWeightedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807B04F2936FD370020AE82 /* NonWeightedTableViewCell.swift */; };
 		F807B0522936FD4A0020AE82 /* CardioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807B0512936FD4A0020AE82 /* CardioTableViewCell.swift */; };
+		F8451D412942F14200EF38AE /* LoadWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8451D402942F14200EF38AE /* LoadWorkoutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		F807B04D2936EEB70020AE82 /* WeightedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightedTableViewCell.swift; sourceTree = "<group>"; };
 		F807B04F2936FD370020AE82 /* NonWeightedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonWeightedTableViewCell.swift; sourceTree = "<group>"; };
 		F807B0512936FD4A0020AE82 /* CardioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioTableViewCell.swift; sourceTree = "<group>"; };
+		F8451D402942F14200EF38AE /* LoadWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadWorkoutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		C981F0BB2932A72D0046B17E /* WorkoutBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				F8451D402942F14200EF38AE /* LoadWorkoutViewController.swift */,
 				F802D84C293EB83300D2CD15 /* AddRoutineViewController.swift */,
 				702BDCA62936888A00643ADA /* AddExerciseViewController.swift */,
 				F802D842293E913300D2CD15 /* RoutinesViewController.swift */,
@@ -332,6 +335,7 @@
 				702BDCAB29368E5200643ADA /* ExerciseModel.swift in Sources */,
 				F802D843293E913300D2CD15 /* RoutinesViewController.swift in Sources */,
 				F802D84B293E962E00D2CD15 /* RoutineModel.swift in Sources */,
+				F8451D412942F14200EF38AE /* LoadWorkoutViewController.swift in Sources */,
 				C981F0BF2932A72D0046B17E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

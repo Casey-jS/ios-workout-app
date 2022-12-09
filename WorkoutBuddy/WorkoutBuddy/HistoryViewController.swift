@@ -17,15 +17,18 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.getHistory()
-        self.history = self.history.reversed()
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
         // Do any additional setup after loading the view.
         tableView.layer.cornerRadius = 5
         tableView.layer.masksToBounds = true
+        
+        self.getHistory()
+        self.history = self.history.reversed()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func getHistory(){
