@@ -208,6 +208,38 @@ extension RoutinesViewController: AddRoutineViewControllerDelegate {
         // Inserts new exercise into exercises list
         self.routines.removeAll(where: { $0.key == routine.key })
         self.routines.insert(routine, at: 0)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RoutineEntity")
+        do{
+            let result = try managedContext.fetch(request)
+            for r in result as! [NSManagedObject]{
+                if (r.value(forKey: "rKey") as! Int) == routine.key{
+                    // Deletes old routine
+                    managedContext.delete(r)
+                    
+                    // Places updated routine into context
+                    let newRoutine = NSEntityDescription.entity(forEntityName: "RoutineEntity", in: managedContext)!
+                    
+                    let rout = NSManagedObject(entity: newRoutine, insertInto: managedContext) as! RoutineEntity
+                    let mExercises = Exercises(exercises: routine.exercises!)
+                    
+                    rout.setValue(mExercises, forKey: "rExercises")
+                    rout.setValue(routine.name, forKey: "rName")
+                    rout.setValue(routine.date, forKey: "rDate")
+                    rout.setValue(routine.key, forKey: "rKey")
+                }
+            }
+        } catch{
+            print("Failed to find")
+        }
+        do{
+            try managedContext.save()
+        }
+        catch{
+            print("error deleting from core data")
+        }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

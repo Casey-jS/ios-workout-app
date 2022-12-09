@@ -31,6 +31,7 @@ class LoadWorkoutViewController: UIViewController, UITableViewDataSource, UITabl
         
         // Do any additional setup after loading the view.
         getRoutines()
+        self.routines = self.routines.reversed()
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
