@@ -48,13 +48,13 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @objc private func refreshHistory(_ sender: Any){
-        DispatchQueue.main.async {
-            self.history = []
-            self.getHistory()
-            self.history = self.history.reversed()
+        self.history = []
+        self.getHistory()
+        self.history = self.history.reversed()
+
+            self.refreshControl.endRefreshing()
             self.tableView.reloadData()
-        }
-        self.refreshControl.endRefreshing()
+
     }
     
     func clearHistory(){

@@ -55,6 +55,11 @@ class AddExerciseViewController: UIViewController {
         self.typeLabel.text = tStr
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            super.touchesBegan(touches, with: event)
+            self.view.endEditing(true)
+        }
+    
     @IBAction func plusTapped(_ sender: Any) {
         var temp: Int = Int(setsLabel.text!)!
         temp += 1

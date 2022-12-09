@@ -36,6 +36,11 @@ class AddRoutineViewController: UIViewController, UITableViewDataSource, UITable
         nameInput.text = routine?.name
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            super.touchesBegan(touches, with: event)
+            self.view.endEditing(true)
+    }
+    
     /*
     // MARK: - Navigation
 
