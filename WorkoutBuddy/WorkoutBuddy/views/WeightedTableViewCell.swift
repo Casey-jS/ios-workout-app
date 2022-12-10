@@ -26,13 +26,13 @@ class WeightedTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        let sets = Double(setsLabel.text!)
-        weightedStepper.value = sets ?? 0.0
+        let sets = exercise?.eSets
+        weightedStepper.value = Double(sets ?? 0)
         // Configure the view for the selected state
     }
 
     @IBAction func changeSet(_ sender: Any) {
-        setsLabel.text = "\(Int(weightedStepper.value))"
+        setsLabel.text = "Sets: \(Int(weightedStepper.value))"
         if let key = exercise?.eKey,
            let _ = delegate {
             self.delegate?.setSets(self, changeSetsTo: Int(weightedStepper.value), forKey: key)

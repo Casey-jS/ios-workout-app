@@ -24,7 +24,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tableView.dataSource = self
 
         // Do any additional setup after loading the view.
-        tableView.layer.cornerRadius = 5
+        tableView.layer.cornerRadius = 15
         tableView.layer.masksToBounds = true
         
         self.getHistory()

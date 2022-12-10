@@ -26,7 +26,7 @@ class RoutinesViewController: UIViewController, UITableViewDataSource, UITableVi
         self.routines = self.routines.reversed()
         
         // Do any additional setup after loading the view.
-        tableView.layer.cornerRadius = 5
+        tableView.layer.cornerRadius = 15
         tableView.layer.masksToBounds = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: Menu)
     }

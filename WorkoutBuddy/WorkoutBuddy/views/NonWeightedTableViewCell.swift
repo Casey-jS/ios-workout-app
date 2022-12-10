@@ -24,13 +24,13 @@ class NonWeightedTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        let sets = Double(setsLabel.text!)
-        nonWeightedStepper.value = sets ?? 0.0
+        let sets = exercise?.eSets
+        nonWeightedStepper.value = Double(sets ?? 0)
         // Configure the view for the selected state
     }
 
     @IBAction func changeSets(_ sender: Any) {
-        setsLabel.text = "\(Int(nonWeightedStepper.value))"
+        setsLabel.text = "Sets: \(Int(nonWeightedStepper.value))"
         if let key = exercise?.eKey,
            let _ = delegate {
             self.delegate?.setSets(self, changeSetsTo: Int(nonWeightedStepper.value), forKey: key)

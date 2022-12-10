@@ -26,9 +26,6 @@ class LoadWorkoutViewController: UIViewController, UITableViewDataSource, UITabl
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        tableView.layer.cornerRadius = 5
-        tableView.layer.masksToBounds = true
-        
         // Do any additional setup after loading the view.
         getRoutines()
         self.routines = self.routines.reversed()

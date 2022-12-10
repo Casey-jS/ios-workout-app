@@ -27,7 +27,7 @@ class AddRoutineViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        tableView.layer.cornerRadius = 5
+        tableView.layer.cornerRadius = 15
         tableView.layer.masksToBounds = true
         // Do any additional setup after loading the view.
         if(editMode == true){

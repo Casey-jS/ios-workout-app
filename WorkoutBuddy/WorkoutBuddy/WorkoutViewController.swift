@@ -37,7 +37,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         timerLabel.layer.cornerRadius = 15
         timerLabel.layer.masksToBounds = true
         
-        tableView.layer.cornerRadius = 5
+        tableView.layer.cornerRadius = 15
         tableView.layer.masksToBounds = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: Menu)
@@ -180,7 +180,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
                 indexPath) as! WeightedTableViewCell
             let exercise = self.exercises[indexPath.row]
                 cell.titleLabel.text = exercise.name
-                cell.setsLabel.text = "\(exercise.eSets)"
+                cell.setsLabel.text = "Sets: \(exercise.eSets)"
                 cell.repsLabel.text = "Reps: \(exercise.eReps)"
                 cell.weightLabel.text = "Weight: \(exercise.eWeight)"
             cell.exercise = exercise
@@ -192,7 +192,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "nonWeightedCell", for: indexPath) as! NonWeightedTableViewCell
             let exercise = self.exercises[indexPath.row]
                 cell.titleLabel.text = exercise.name
-                cell.setsLabel.text = "\(exercise.eSets)"
+                cell.setsLabel.text = "Sets: \(exercise.eSets)"
                 cell.repsLabel.text = "Reps: \(exercise.eReps)"
             cell.exercise = exercise
             cell.delegate = self
