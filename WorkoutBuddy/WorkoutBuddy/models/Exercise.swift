@@ -83,7 +83,9 @@ public class Exercise: NSObject, NSSecureCoding {
     }
 }
 
-public class Exercises: NSObject, NSCoding {
+public class Exercises: NSObject, NSSecureCoding {
+    
+    public static var supportsSecureCoding: Bool = true
     
     public var exercises: [Exercise] = []
     
