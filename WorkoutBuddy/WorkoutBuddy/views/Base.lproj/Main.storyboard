@@ -330,26 +330,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00 : 00 : 00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzB-2r-kKM">
-                                <rect key="frame" x="16" y="152" width="361" height="78"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00 : 00 : 00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzB-2r-kKM">
+                                <rect key="frame" x="2" y="153" width="389" height="78"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="GLn-FX-0UD"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="65"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68z-q5-7rP">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68z-q5-7rP">
                                 <rect key="frame" x="156" y="254" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Start"/>
                                 <connections>
                                     <action selector="startTapped:" destination="ekg-sp-Fwd" eventType="touchUpInside" id="ay6-dz-n4z"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-tg-NGv">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-tg-NGv">
                                 <rect key="frame" x="325" y="308" width="52" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="+">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
@@ -358,23 +358,38 @@
                                     <action selector="addTapped:" destination="ekg-sp-Fwd" eventType="touchUpInside" id="gjG-Jh-V89"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmA-8b-0df">
-                                <rect key="frame" x="16" y="103" width="290" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercises" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQl-td-50v">
+                                <rect key="frame" x="30" y="318" width="87" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercises" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQl-td-50v">
-                                <rect key="frame" x="20" y="318" width="87" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Workout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmA-8b-0df">
+                                <rect key="frame" x="121" y="103" width="151" height="50"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eD2-Nq-wbu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NzB-2r-kKM" firstAttribute="leading" secondItem="eD2-Nq-wbu" secondAttribute="leading" constant="10" id="2Nx-AW-ofH"/>
+                            <constraint firstItem="YmA-8b-0df" firstAttribute="centerX" secondItem="eD2-Nq-wbu" secondAttribute="centerX" id="2Qu-1n-JRp"/>
+                            <constraint firstItem="68z-q5-7rP" firstAttribute="leading" secondItem="fQl-td-50v" secondAttribute="trailing" constant="49" id="ApU-UB-6q5"/>
+                            <constraint firstItem="bMR-tg-NGv" firstAttribute="leading" secondItem="68z-q5-7rP" secondAttribute="trailing" constant="89" id="D6u-YM-Y9T"/>
+                            <constraint firstItem="NzB-2r-kKM" firstAttribute="leading" secondItem="eD2-Nq-wbu" secondAttribute="leading" constant="2" id="DEK-eN-fdq"/>
+                            <constraint firstItem="bMR-tg-NGv" firstAttribute="top" secondItem="NzB-2r-kKM" secondAttribute="bottom" constant="77" id="KO2-wf-x9p"/>
+                            <constraint firstItem="fQl-td-50v" firstAttribute="top" secondItem="NzB-2r-kKM" secondAttribute="bottom" constant="87" id="Mfd-yg-lfv"/>
+                            <constraint firstItem="68z-q5-7rP" firstAttribute="top" secondItem="NzB-2r-kKM" secondAttribute="bottom" constant="23" id="Qvo-t4-IQ9"/>
+                            <constraint firstItem="eD2-Nq-wbu" firstAttribute="trailing" secondItem="NzB-2r-kKM" secondAttribute="trailing" constant="10" id="RWn-Zf-pOw"/>
+                            <constraint firstItem="NzB-2r-kKM" firstAttribute="top" secondItem="YmA-8b-0df" secondAttribute="bottom" id="Suf-CJ-e3v"/>
+                            <constraint firstItem="NzB-2r-kKM" firstAttribute="top" secondItem="eD2-Nq-wbu" secondAttribute="top" constant="50" id="f29-Ut-VUC"/>
+                            <constraint firstItem="YmA-8b-0df" firstAttribute="centerX" secondItem="eD2-Nq-wbu" secondAttribute="centerX" id="p0a-e8-d0i"/>
+                            <constraint firstItem="68z-q5-7rP" firstAttribute="centerX" secondItem="eD2-Nq-wbu" secondAttribute="centerX" id="pbW-YQ-qeF"/>
+                            <constraint firstItem="eD2-Nq-wbu" firstAttribute="trailing" secondItem="NzB-2r-kKM" secondAttribute="trailing" constant="2" id="wpp-PH-fNv"/>
+                            <constraint firstItem="YmA-8b-0df" firstAttribute="centerX" secondItem="eD2-Nq-wbu" secondAttribute="centerX" id="yc7-VP-zjE"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2Wt-pq-Qku"/>
                     <connections>
@@ -895,7 +910,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="O3K-Cx-pQc"/>
-        <segue reference="KD5-gT-hJW"/>
+        <segue reference="5SD-DD-Diz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock" catalog="system" width="128" height="123"/>

@@ -31,7 +31,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tableView.dataSource = self
 
         // Rounds start button and timer label
-        startButton.layer.cornerRadius = startButton.frame.width / 2
+        // startButton.layer.cornerRadius = startButton.frame.width / 2
         startButton.layer.masksToBounds = true
         
         timerLabel.layer.cornerRadius = 15
